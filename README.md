@@ -101,7 +101,7 @@ Or using Docker labels:
 # docker-compose.yml
 services:
   traefik:
-    image: traefik:latest
+    image: traefik:v3.6.2
     command:
       - "--providers.http.endpoint=http://traefik-config-middleware:8080/traefik-config"
       - "--providers.http.pollInterval=30s"

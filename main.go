@@ -3,9 +3,10 @@ package main
 import (
     "encoding/json"
     "fmt"
-    "io/ioutil"
+    "io"
     "log"
     "net/http"
+    "os"
     "strings"
     "sync"
     "time"
@@ -44,29 +45,38 @@ type HTTPRouter struct {
     TLS         map[string]interface{} `json:"tls,omitempty"`
 }
 
+type Server struct {
+    URL string `json:"url"`
+}
+
+type LoadBalancer struct {
+    Servers []Server `json:"servers"`
+}
+
 type HTTPService struct {
-    LoadBalancer struct {
-        Servers []struct {
-            URL string `json:"url"`
-        } `json:"servers"`
-    } `json:"loadBalancer"`
+    LoadBalancer LoadBalancer `json:"loadBalancer"`
+}
+
+type HTTPBlock struct {
+    Routers  map[string]HTTPRouter  `json:"routers"`
+    Services map[string]HTTPService `json:"services"`
 }
 
 type HTTPProxyConfig struct {
-    HTTP struct {
-        Routers  map[string]HTTPRouter  `json:"routers"`
-        Services map[string]HTTPService `json:"services"`
-    } `json:"http"`
+    HTTP HTTPBlock `json:"http"`
 }
 
 var (
     config       Config
     cachedConfig HTTPProxyConfig
     configMutex  sync.RWMutex
+    httpClient   = &http.Client{
+        Timeout: 10 * time.Second,
+    }
 )
 
 func loadConfig(filename string) error {
-    data, err := ioutil.ReadFile(filename)
+    data, err := os.ReadFile(filename)
     if err != nil {
         return err
     }
@@ -86,10 +96,6 @@ func loadConfig(filename string) error {
 
 
 func fetchDownstreamRouters(ds DownstreamConfig) ([]TraefikRouter, error) {
-    client := &http.Client{
-        Timeout: 10 * time.Second,
-    }
-
     req, err := http.NewRequest("GET", ds.APIURL+"/api/http/routers", nil)
     if err != nil {
         return nil, err
@@ -99,14 +105,14 @@ func fetchDownstreamRouters(ds DownstreamConfig) ([]TraefikRouter, error) {
         req.Header.Set("Authorization", "Bearer "+ds.APIKey)
     }
 
-    resp, err := client.Do(req)
+    resp, err := httpClient.Do(req)
     if err != nil {
         return nil, err
     }
     defer resp.Body.Close()
 
-    if resp.StatusCode != 200 {
-        body, _ := ioutil.ReadAll(resp.Body)
+    if resp.StatusCode != http.StatusOK {
+        body, _ := io.ReadAll(resp.Body)
         return nil, fmt.Errorf("API returned status %d: %s", resp.StatusCode, string(body))
     }
 
@@ -146,21 +152,13 @@ func getBackendURL(ds DownstreamConfig, useTLS bool) string {
     apiURL = strings.TrimPrefix(apiURL, "https://")
 
     // Remove path if present
-    if idx := strings.Index(apiURL, "/"); idx > 0 {
+    if idx := strings.Index(apiURL, "/"); idx != -1 {
         apiURL = apiURL[:idx]
     }
 
-    // Add default port if not specified
+    // Add default port if not specified, otherwise preserve existing port
     if !strings.Contains(apiURL, ":") {
         apiURL = apiURL + defaultPort
-    } else {
-        // Replace API port with default HTTP/HTTPS port
-        parts := strings.Split(apiURL, ":")
-        if useTLS {
-            apiURL = parts[0] + ":443"
-        } else {
-            apiURL = parts[0] + ":80"
-        }
     }
 
     return protocol + apiURL
@@ -213,7 +211,7 @@ func aggregateConfigs() {
             // Generate unique names for router and service
             // Use router name without provider suffix if available
             routerBaseName := router.Name
-            if idx := strings.Index(routerBaseName, "@"); idx > 0 {
+            if idx := strings.Index(routerBaseName, "@"); idx != -1 {
                 routerBaseName = routerBaseName[:idx]
             }
 
@@ -237,9 +235,7 @@ func aggregateConfigs() {
 
             // Create HTTP service pointing to downstream Traefik
             httpService := HTTPService{}
-            httpService.LoadBalancer.Servers = []struct {
-                URL string `json:"url"`
-            }{
+            httpService.LoadBalancer.Servers = []Server{
                 {URL: backendURL},
             }
             newConfig.HTTP.Services[httpServiceName] = httpService
@@ -287,7 +283,12 @@ func pollLoop() {
 }
 
 func main() {
-    if err := loadConfig("config.yml"); err != nil {
+    configPath := os.Getenv("CONFIG_PATH")
+    if configPath == "" {
+        configPath = "config.yml"
+    }
+
+    if err := loadConfig(configPath); err != nil {
         log.Fatalf("Failed to load config: %v", err)
     }
 
