@@ -233,7 +233,7 @@ func aggregateConfigs() {
             }
 
             // Determine if this router uses TLS
-            useTLS := router.TLS != nil && len(router.TLS) > 0
+            useTLS := len(router.TLS) > 0
 
             // Get backend URL with protocol matching
             backendURL := getBackendURL(ds, useTLS)
