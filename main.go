@@ -30,13 +30,18 @@ type Config struct {
     LogLevel     string             `yaml:"log_level"`
 }
 
+type TLSConfig struct {
+    CertResolver string `yaml:"cert_resolver"`
+}
+
 type DownstreamConfig struct {
-    Name               string   `yaml:"name"`
-    APIURL             string   `yaml:"api_url"`
-    BackendOverride    string   `yaml:"backend_override"`
-    APIKey             string   `yaml:"api_key"`
-    Middlewares        []string `yaml:"middlewares"`
-    IgnoreEntryPoints  []string `yaml:"ignore_entrypoints"`
+    Name               string     `yaml:"name"`
+    APIURL             string     `yaml:"api_url"`
+    BackendOverride    string     `yaml:"backend_override"`
+    APIKey             string     `yaml:"api_key"`
+    TLS                *TLSConfig `yaml:"tls"`
+    Middlewares        []string   `yaml:"middlewares"`
+    IgnoreEntryPoints  []string   `yaml:"ignore_entrypoints"`
 }
 
 type TraefikRouter struct {
@@ -256,9 +261,11 @@ func aggregateConfigs() {
                 Middlewares: ds.Middlewares, // User-defined middlewares from config
             }
 
-            // Preserve TLS settings if downstream router has TLS
-            if useTLS {
-                httpRouter.TLS = router.TLS
+            // Apply user-configured TLS settings
+            if ds.TLS != nil && ds.TLS.CertResolver != "" {
+                httpRouter.TLS = map[string]interface{}{
+                    "certResolver": ds.TLS.CertResolver,
+                }
             }
 
             newConfig.HTTP.Routers[httpRouterName] = httpRouter
