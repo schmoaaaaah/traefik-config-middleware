@@ -4,6 +4,9 @@ downstream:
     api_url: http://traefik-config-middleware-downstream-traefik-1-1:8081
     # Optional: Override the backend URL for this downstream instance
     backend_override: http://traefik-config-middleware-downstream-traefik-1-1:808
+    # Optional: TLS settings for routes from this downstream
+    # tls:
+    #   cert_resolver: myresolver
     # Optional: Add middlewares to all routes from this downstream
     # middlewares:
     #   - auth@file
