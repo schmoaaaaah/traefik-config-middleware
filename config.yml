@@ -1,0 +1,17 @@
+# config.yml
+downstream:
+  - name: traefik-downstream-1
+    api_url: http://traefik-config-middleware-downstream-traefik-1-1:8081
+    # Optional: Override the backend URL for this downstream instance
+    backend_override: http://traefik-config-middleware-downstream-traefik-1-1:808
+    # Optional: Add middlewares to all routes from this downstream
+    # middlewares:
+    #   - auth@file
+    #   - ratelimit@file
+    # Optional: Ignore routers using these entrypoints (e.g., internal/admin routes)
+    ignore_entrypoints:
+      - traefik
+
+# Optional settings
+poll_interval: 30s
+log_level: warn
