@@ -116,6 +116,7 @@ jobs:
         uses: actions/download-artifact@v6
         with:
           path: artifacts
+          pattern: binary-*
           merge-multiple: true
 
       - name: Get version from tag
