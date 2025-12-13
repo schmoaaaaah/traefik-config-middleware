@@ -40,7 +40,6 @@ type DownstreamConfig struct {
     BackendOverride    string     `yaml:"backend_override"`
     APIKey             string     `yaml:"api_key"`
     TLS                *TLSConfig `yaml:"tls"`
-    EntryPoints        []string   `yaml:"entrypoints"`
     Middlewares        []string   `yaml:"middlewares"`
     IgnoreEntryPoints  []string   `yaml:"ignore_entrypoints"`
 }
@@ -254,17 +253,11 @@ func aggregateConfigs() {
             httpRouterName := fmt.Sprintf("%s-%s", ds.Name, routerBaseName)
             httpServiceName := fmt.Sprintf("service-%s-%s", ds.Name, routerBaseName)
 
-            // Determine entrypoints - use override if specified
-            entryPoints := router.EntryPoints
-            if len(ds.EntryPoints) > 0 {
-                entryPoints = ds.EntryPoints
-            }
-
             // Create HTTP router preserving original rule
             httpRouter := HTTPRouter{
                 Rule:        router.Rule,
                 Service:     httpServiceName,
-                EntryPoints: entryPoints,
+                EntryPoints: router.EntryPoints,
                 Middlewares: ds.Middlewares, // User-defined middlewares from config
             }
 
