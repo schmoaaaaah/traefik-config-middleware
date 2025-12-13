@@ -170,6 +170,7 @@ go build -o traefik-config-middleware
 
 # Build Docker image
 docker build -t traefik-config-middleware .
+```
 
 ## Support
 

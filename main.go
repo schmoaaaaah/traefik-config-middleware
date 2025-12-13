@@ -6,6 +6,7 @@ import (
     "io"
     "log"
     "net/http"
+    "net/url"
     "os"
     "strings"
     "sync"
@@ -14,9 +15,18 @@ import (
     "gopkg.in/yaml.v3"
 )
 
+const (
+    defaultPollInterval = 30 * time.Second
+    defaultHTTPTimeout  = 10 * time.Second
+    defaultConfigFile   = "config.yml"
+    defaultListenAddr   = ":8080"
+    maxErrorBodyLen     = 256
+)
+
 type Config struct {
     Downstream   []DownstreamConfig `yaml:"downstream"`
     PollInterval string             `yaml:"poll_interval"`
+    HTTPTimeout  string             `yaml:"http_timeout"`
     LogLevel     string             `yaml:"log_level"`
 }
 
@@ -75,6 +85,14 @@ var (
     }
 )
 
+// loadConfig loads the application configuration from the specified YAML file.
+// Expected YAML structure:
+//   - downstream: list of downstream Traefik instances to aggregate
+//   - poll_interval: how often to refresh config (default: 30s)
+//   - http_timeout: timeout for API calls (default: 10s)
+//   - log_level: logging verbosity
+//
+// If poll_interval is not specified, defaults to 30s.
 func loadConfig(filename string) error {
     data, err := os.ReadFile(filename)
     if err != nil {
@@ -96,7 +114,12 @@ func loadConfig(filename string) error {
 
 
 func fetchDownstreamRouters(ds DownstreamConfig) ([]TraefikRouter, error) {
-    req, err := http.NewRequest("GET", ds.APIURL+"/api/http/routers", nil)
+    apiEndpoint, err := url.JoinPath(ds.APIURL, "/api/http/routers")
+    if err != nil {
+        return nil, fmt.Errorf("invalid API URL: %w", err)
+    }
+
+    req, err := http.NewRequest("GET", apiEndpoint, nil)
     if err != nil {
         return nil, err
     }
@@ -113,7 +136,11 @@ func fetchDownstreamRouters(ds DownstreamConfig) ([]TraefikRouter, error) {
 
     if resp.StatusCode != http.StatusOK {
         body, _ := io.ReadAll(resp.Body)
-        return nil, fmt.Errorf("API returned status %d: %s", resp.StatusCode, string(body))
+        bodyStr := string(body)
+        if len(bodyStr) > maxErrorBodyLen {
+            bodyStr = bodyStr[:maxErrorBodyLen] + "...(truncated)"
+        }
+        return nil, fmt.Errorf("API returned status %d: %s", resp.StatusCode, bodyStr)
     }
 
     // Traefik API returns an array, not a map
@@ -181,6 +208,9 @@ func shouldIgnoreRouter(router TraefikRouter, ignoreEntryPoints []string) bool {
     return false
 }
 
+// aggregateConfigs fetches router configurations from all downstream Traefik instances
+// and builds a unified HTTPProxyConfig. Errors from individual downstreams are logged
+// but don't stop processing of other downstreams. Updates cachedConfig atomically.
 func aggregateConfigs() {
     newConfig := HTTPProxyConfig{}
     newConfig.HTTP.Routers = make(map[string]HTTPRouter)
@@ -257,7 +287,9 @@ func getTraefikConfig(w http.ResponseWriter, r *http.Request) {
     defer configMutex.RUnlock()
 
     w.Header().Set("Content-Type", "application/json")
-    json.NewEncoder(w).Encode(cachedConfig)
+    if err := json.NewEncoder(w).Encode(cachedConfig); err != nil {
+        log.Printf("Error encoding config response: %v", err)
+    }
 }
 
 func healthCheck(w http.ResponseWriter, r *http.Request) {
@@ -268,7 +300,7 @@ func healthCheck(w http.ResponseWriter, r *http.Request) {
 func pollLoop() {
     duration, err := time.ParseDuration(config.PollInterval)
     if err != nil {
-        duration = 30 * time.Second
+        duration = defaultPollInterval
     }
 
     ticker := time.NewTicker(duration)
@@ -285,18 +317,27 @@ func pollLoop() {
 func main() {
     configPath := os.Getenv("CONFIG_PATH")
     if configPath == "" {
-        configPath = "config.yml"
+        configPath = defaultConfigFile
     }
 
     if err := loadConfig(configPath); err != nil {
         log.Fatalf("Failed to load config: %v", err)
     }
 
+    // Configure HTTP client timeout from config
+    timeout := defaultHTTPTimeout
+    if config.HTTPTimeout != "" {
+        if parsed, err := time.ParseDuration(config.HTTPTimeout); err == nil {
+            timeout = parsed
+        }
+    }
+    httpClient.Timeout = timeout
+
     http.HandleFunc("/traefik-config", getTraefikConfig)
     http.HandleFunc("/health", healthCheck)
 
     go pollLoop()
 
-    log.Println("SNI Config Aggregator starting on :8080")
-    log.Fatal(http.ListenAndServe(":8080", nil))
+    log.Printf("SNI Config Aggregator starting on %s", defaultListenAddr)
+    log.Fatal(http.ListenAndServe(defaultListenAddr, nil))
 }
