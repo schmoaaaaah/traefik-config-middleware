@@ -7,6 +7,9 @@ downstream:
     # Optional: TLS settings for routes from this downstream
     # tls:
     #   cert_resolver: myresolver
+    # Optional: Override entrypoints for all routes from this downstream
+    # entrypoints:
+    #   - websecure
     # Optional: Add middlewares to all routes from this downstream
     # middlewares:
     #   - auth@file
