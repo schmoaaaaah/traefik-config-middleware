@@ -1,2 +1,14 @@
 [tools]
 go = "latest"
+
+[tasks.test]
+description = "Run all tests"
+run = "go test ./test/... -v"
+
+[tasks."test:short"]
+description = "Run tests without verbose output"
+run = "go test ./test/..."
+
+[tasks."test:cover"]
+description = "Run tests with coverage"
+run = "go test ./test/... -coverprofile=coverage.out && go tool cover -html=coverage.out -o coverage.html"

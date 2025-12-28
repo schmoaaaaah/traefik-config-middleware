@@ -1,0 +1,3 @@
+downstream:
+  - name: minimal-downstream
+    api_url: http://traefik:8081

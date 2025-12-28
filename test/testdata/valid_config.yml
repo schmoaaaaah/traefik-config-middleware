@@ -1,0 +1,24 @@
+downstream:
+  - name: traefik-downstream-1
+    api_url: http://traefik-1:8081
+    backend_override: http://backend-1:8080
+    tls:
+      cert_resolver: myresolver
+    entrypoints:
+      - websecure
+    middlewares:
+      - auth@file
+      - ratelimit@file
+    ignore_entrypoints:
+      - traefik
+    wildcard_fix: true
+
+  - name: traefik-downstream-2
+    api_url: https://traefik-2:8082
+    api_key: secret-api-key
+    ignore_entrypoints:
+      - internal
+
+poll_interval: 15s
+http_timeout: 5s
+log_level: debug

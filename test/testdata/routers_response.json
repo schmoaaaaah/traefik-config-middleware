@@ -1,0 +1,83 @@
+[
+    {
+        "entryPoints": [
+            "websecure"
+        ],
+        "middlewares": [
+            "auth@file"
+        ],
+        "service": "my-service",
+        "rule": "Host(`example.com`) && PathPrefix(`/`)",
+        "priority": 50,
+        "tls": {
+            "options": "default"
+        },
+        "status": "enabled",
+        "name": "my-router@kubernetes",
+        "provider": "kubernetes"
+    },
+    {
+        "entryPoints": [
+            "web"
+        ],
+        "service": "another-service",
+        "rule": "Host(`another.example.com`) && PathPrefix(`/api`)",
+        "priority": 45,
+        "status": "enabled",
+        "name": "another-router@kubernetes",
+        "provider": "kubernetes"
+    },
+    {
+        "entryPoints": [
+            "traefik"
+        ],
+        "service": "api@internal",
+        "rule": "PathPrefix(`/dashboard`)",
+        "priority": 100,
+        "status": "enabled",
+        "name": "dashboard@internal",
+        "provider": "internal"
+    },
+    {
+        "entryPoints": [
+            "websecure"
+        ],
+        "service": "wildcard-service",
+        "rule": "HostRegexp(`^[a-zA-Z0-9-]+\\.pages\\.example\\.com$`) && PathPrefix(`/`)",
+        "priority": 60,
+        "tls": {
+            "options": "default"
+        },
+        "status": "enabled",
+        "name": "wildcard-router@kubernetes",
+        "provider": "kubernetes"
+    },
+    {
+        "entryPoints": [
+            "websecure"
+        ],
+        "service": "multi-host-service",
+        "rule": "Host(`host1.example.com`) || Host(`host2.example.com`)",
+        "priority": 55,
+        "tls": {
+            "options": "default"
+        },
+        "status": "enabled",
+        "name": "multi-host-router@kubernetes",
+        "provider": "kubernetes"
+    },
+    {
+        "entryPoints": [
+            "websecure"
+        ],
+        "service": "multi-host-wildcard-service",
+        "rule": "Host(`host1.example.com`) || Host(`host2.example.com`) || HostRegexp(`^[a-zA-Z0-9-]+\\.pages\\.example\\.com$`)",
+        "priority": 55,
+        "tls": {
+            "options": "default"
+        },
+        "status": "enabled",
+        "name": "multi-host-wildcard-router@kubernetes",
+        "provider": "kubernetes"
+    }
+]

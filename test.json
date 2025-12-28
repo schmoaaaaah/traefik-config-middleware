@@ -1,0 +1,2423 @@
+[
+    {
+        "entryPoints": [
+            "metrics"
+        ],
+        "middlewares": [
+            "networking-traefik-geoblock@kubernetescrd"
+        ],
+        "service": "ai-open-webui-http",
+        "rule": "Host(`open-webui.r4nd0.com`) \u0026\u0026 PathPrefix(`/`)",
+        "priority": 47,
+        "observability": {
+            "accessLogs": true,
+            "metrics": true,
+            "tracing": true,
+            "traceVerbosity": "minimal"
+        },
+        "status": "enabled",
+        "using": [
+            "metrics"
+        ],
+        "name": "ai-open-webui-open-webui-r4nd0-com@kubernetes",
+        "provider": "kubernetes"
+    },
+    {
+        "entryPoints": [
+            "metrics"
+        ],
+        "middlewares": [
+            "networking-traefik-geoblock@kubernetescrd"
+        ],
+        "service": "archive-atuin-8888",
+        "rule": "Host(`atuin.r4nd0.com`) \u0026\u0026 PathPrefix(`/`)",
+        "priority": 42,
+        "observability": {
+            "accessLogs": true,
+            "metrics": true,
+            "tracing": true,
+            "traceVerbosity": "minimal"
+        },
+        "status": "enabled",
+        "using": [
+            "metrics"
+        ],
+        "name": "archive-atuin-atuin-r4nd0-com@kubernetes",
+        "provider": "kubernetes"
+    },
+    {
+        "entryPoints": [
+            "metrics"
+        ],
+        "middlewares": [
+            "networking-traefik-geoblock@kubernetescrd"
+        ],
+        "service": "archive-gitlab-gitlab-pages-8090",
+        "rule": "HostRegexp(`^[a-zA-Z0-9-]+\\.pages\\.r4nd0\\.com$`) \u0026\u0026 PathPrefix(`/`)",
+        "priority": 67,
+        "tls": {
+            "options": "default"
+        },
+        "observability": {
+            "accessLogs": true,
+            "metrics": true,
+            "tracing": true,
+            "traceVerbosity": "minimal"
+        },
+        "status": "enabled",
+        "using": [
+            "metrics"
+        ],
+        "name": "archive-gitlab-gitlab-pages-pages-r4nd0-com@kubernetes",
+        "provider": "kubernetes"
+    },
+    {
+        "entryPoints": [
+            "metrics"
+        ],
+        "middlewares": [
+            "networking-traefik-geoblock@kubernetescrd"
+        ],
+        "service": "archive-gitlab-kas-8154",
+        "rule": "Host(`kas.r4nd0.com`) \u0026\u0026 PathPrefix(`/k8s-proxy/`)",
+        "priority": 50,
+        "tls": {
+            "options": "default"
+        },
+        "observability": {
+            "accessLogs": true,
+            "metrics": true,
+            "tracing": true,
+            "traceVerbosity": "minimal"
+        },
+        "status": "enabled",
+        "using": [
+            "metrics"
+        ],
+        "name": "archive-gitlab-kas-kas-r4nd0-com-k8s-proxy@kubernetes",
+        "provider": "kubernetes"
+    },
+    {
+        "entryPoints": [
+            "metrics"
+        ],
+        "middlewares": [
+            "networking-traefik-geoblock@kubernetescrd"
+        ],
+        "service": "archive-gitlab-kas-8150",
+        "rule": "Host(`kas.r4nd0.com`) \u0026\u0026 PathPrefix(`/`)",
+        "priority": 40,
+        "tls": {
+            "options": "default"
+        },
+        "observability": {
+            "accessLogs": true,
+            "metrics": true,
+            "tracing": true,
+            "traceVerbosity": "minimal"
+        },
+        "status": "enabled",
+        "using": [
+            "metrics"
+        ],
+        "name": "archive-gitlab-kas-kas-r4nd0-com@kubernetes",
+        "provider": "kubernetes"
+    },
+    {
+        "entryPoints": [
+            "metrics"
+        ],
+        "middlewares": [
+            "networking-traefik-geoblock@kubernetescrd"
+        ],
+        "service": "archive-gitlab-minio-svc-9000",
+        "rule": "Host(`minio.gitlab.r4nd0.com`) \u0026\u0026 PathPrefix(`/`)",
+        "priority": 49,
+        "tls": {
+            "options": "default"
+        },
+        "observability": {
+            "accessLogs": true,
+            "metrics": true,
+            "tracing": true,
+            "traceVerbosity": "minimal"
+        },
+        "status": "enabled",
+        "using": [
+            "metrics"
+        ],
+        "name": "archive-gitlab-minio-minio-gitlab-r4nd0-com@kubernetes",
+        "provider": "kubernetes"
+    },
+    {
+        "entryPoints": [
+            "metrics"
+        ],
+        "middlewares": [
+            "networking-traefik-geoblock@kubernetescrd"
+        ],
+        "service": "archive-gitlab-registry-5000",
+        "rule": "Host(`registry.gitlab.r4nd0.com`) \u0026\u0026 PathPrefix(`/`)",
+        "priority": 52,
+        "tls": {
+            "options": "default"
+        },
+        "observability": {
+            "accessLogs": true,
+            "metrics": true,
+            "tracing": true,
+            "traceVerbosity": "minimal"
+        },
+        "status": "enabled",
+        "using": [
+            "metrics"
+        ],
+        "name": "archive-gitlab-registry-registry-gitlab-r4nd0-com@kubernetes",
+        "provider": "kubernetes"
+    },
+    {
+        "entryPoints": [
+            "metrics"
+        ],
+        "middlewares": [
+            "networking-traefik-geoblock@kubernetescrd"
+        ],
+        "service": "archive-gitlab-webservice-default-8181",
+        "rule": "Host(`gitlab.r4nd0.com`) \u0026\u0026 PathPrefix(`/`)",
+        "priority": 43,
+        "tls": {
+            "options": "default"
+        },
+        "observability": {
+            "accessLogs": true,
+            "metrics": true,
+            "tracing": true,
+            "traceVerbosity": "minimal"
+        },
+        "status": "enabled",
+        "using": [
+            "metrics"
+        ],
+        "name": "archive-gitlab-webservice-default-gitlab-r4nd0-com@kubernetes",
+        "provider": "kubernetes"
+    },
+    {
+        "entryPoints": [
+            "metrics"
+        ],
+        "middlewares": [
+            "networking-traefik-geoblock@kubernetescrd"
+        ],
+        "service": "archive-hoarder-3000",
+        "rule": "Host(`hoarder.r4nd0.com`) \u0026\u0026 PathPrefix(`/`)",
+        "priority": 44,
+        "observability": {
+            "accessLogs": true,
+            "metrics": true,
+            "tracing": true,
+            "traceVerbosity": "minimal"
+        },
+        "status": "enabled",
+        "using": [
+            "metrics"
+        ],
+        "name": "archive-hoarder-hoarder-r4nd0-com@kubernetes",
+        "provider": "kubernetes"
+    },
+    {
+        "entryPoints": [
+            "metrics"
+        ],
+        "middlewares": [
+            "networking-traefik-geoblock@kubernetescrd"
+        ],
+        "service": "archive-immich-8080",
+        "rule": "Host(`immich.r4nd0.com`) \u0026\u0026 PathPrefix(`/map_proxy/`)",
+        "priority": 53,
+        "observability": {
+            "accessLogs": true,
+            "metrics": true,
+            "tracing": true,
+            "traceVerbosity": "minimal"
+        },
+        "status": "enabled",
+        "using": [
+            "metrics"
+        ],
+        "name": "archive-immich-immich-r4nd0-com-map-proxy@kubernetes",
+        "provider": "kubernetes"
+    },
+    {
+        "entryPoints": [
+            "metrics"
+        ],
+        "middlewares": [
+            "networking-traefik-geoblock@kubernetescrd"
+        ],
+        "service": "archive-immich-2283",
+        "rule": "Host(`immich.r4nd0.com`) \u0026\u0026 PathPrefix(`/`)",
+        "priority": 43,
+        "observability": {
+            "accessLogs": true,
+            "metrics": true,
+            "tracing": true,
+            "traceVerbosity": "minimal"
+        },
+        "status": "enabled",
+        "using": [
+            "metrics"
+        ],
+        "name": "archive-immich-immich-r4nd0-com@kubernetes",
+        "provider": "kubernetes"
+    },
+    {
+        "entryPoints": [
+            "metrics"
+        ],
+        "middlewares": [
+            "networking-traefik-geoblock@kubernetescrd"
+        ],
+        "service": "archive-immich-power-tools-3000",
+        "rule": "Host(`immich-power-tools.r4nd0.com`) \u0026\u0026 PathPrefix(`/`)",
+        "priority": 55,
+        "observability": {
+            "accessLogs": true,
+            "metrics": true,
+            "tracing": true,
+            "traceVerbosity": "minimal"
+        },
+        "status": "enabled",
+        "using": [
+            "metrics"
+        ],
+        "name": "archive-immich-power-tools-immich-power-tools-r4nd0-com@kubernetes",
+        "provider": "kubernetes"
+    },
+    {
+        "entryPoints": [
+            "metrics"
+        ],
+        "middlewares": [
+            "networking-traefik-geoblock@kubernetescrd"
+        ],
+        "service": "archive-memos-8080",
+        "rule": "Host(`memos.r4nd0.com`) \u0026\u0026 PathPrefix(`/`)",
+        "priority": 42,
+        "observability": {
+            "accessLogs": true,
+            "metrics": true,
+            "tracing": true,
+            "traceVerbosity": "minimal"
+        },
+        "status": "enabled",
+        "using": [
+            "metrics"
+        ],
+        "name": "archive-memos-memos-r4nd0-com@kubernetes",
+        "provider": "kubernetes"
+    },
+    {
+        "entryPoints": [
+            "metrics"
+        ],
+        "middlewares": [
+            "networking-traefik-geoblock@kubernetescrd"
+        ],
+        "service": "archive-outline-3000",
+        "rule": "Host(`outline.r4nd0.com`) \u0026\u0026 PathPrefix(`/`)",
+        "priority": 44,
+        "observability": {
+            "accessLogs": true,
+            "metrics": true,
+            "tracing": true,
+            "traceVerbosity": "minimal"
+        },
+        "status": "enabled",
+        "using": [
+            "metrics"
+        ],
+        "name": "archive-outline-outline-r4nd0-com@kubernetes",
+        "provider": "kubernetes"
+    },
+    {
+        "entryPoints": [
+            "metrics"
+        ],
+        "middlewares": [
+            "networking-traefik-geoblock@kubernetescrd"
+        ],
+        "service": "default-apetito-proxy-db-8000",
+        "rule": "Host(`api.sneakyspoon.r4nd0.com`) \u0026\u0026 PathPrefix(`/`)",
+        "priority": 52,
+        "observability": {
+            "accessLogs": true,
+            "metrics": true,
+            "tracing": true,
+            "traceVerbosity": "minimal"
+        },
+        "status": "enabled",
+        "using": [
+            "metrics"
+        ],
+        "name": "default-apetito-proxy-db-api-sneakyspoon-r4nd0-com@kubernetes",
+        "provider": "kubernetes"
+    },
+    {
+        "entryPoints": [
+            "metrics"
+        ],
+        "middlewares": [
+            "networking-traefik-geoblock@kubernetescrd"
+        ],
+        "service": "default-chopsticksninja-80",
+        "rule": "Host(`chopsticksninja.r4nd0.com`) \u0026\u0026 PathPrefix(`/`)",
+        "priority": 52,
+        "observability": {
+            "accessLogs": true,
+            "metrics": true,
+            "tracing": true,
+            "traceVerbosity": "minimal"
+        },
+        "status": "enabled",
+        "using": [
+            "metrics"
+        ],
+        "name": "default-chopsticksninja-chopsticksninja-r4nd0-com@kubernetes",
+        "provider": "kubernetes"
+    },
+    {
+        "entryPoints": [
+            "metrics"
+        ],
+        "middlewares": [
+            "networking-traefik-geoblock@kubernetescrd",
+            "default-garage-cors-headers@kubernetescrd"
+        ],
+        "service": "default-garage-3902",
+        "rule": "HostRegexp(`^[a-zA-Z0-9-]+\\.static\\.garage\\.r4nd0\\.com$`) \u0026\u0026 PathPrefix(`/`)",
+        "priority": 76,
+        "observability": {
+            "accessLogs": true,
+            "metrics": true,
+            "tracing": true,
+            "traceVerbosity": "minimal"
+        },
+        "status": "enabled",
+        "using": [
+            "metrics"
+        ],
+        "name": "default-garage-web-static-garage-r4nd0-com@kubernetes",
+        "provider": "kubernetes"
+    },
+    {
+        "entryPoints": [
+            "metrics"
+        ],
+        "middlewares": [
+            "networking-traefik-geoblock@kubernetescrd"
+        ],
+        "service": "default-icons-3000",
+        "rule": "Host(`icons.r4nd0.com`) \u0026\u0026 PathPrefix(`/`)",
+        "priority": 42,
+        "observability": {
+            "accessLogs": true,
+            "metrics": true,
+            "tracing": true,
+            "traceVerbosity": "minimal"
+        },
+        "status": "enabled",
+        "using": [
+            "metrics"
+        ],
+        "name": "default-icons-icons-r4nd0-com@kubernetes",
+        "provider": "kubernetes"
+    },
+    {
+        "entryPoints": [
+            "metrics"
+        ],
+        "service": "default-naughtyrecall-80",
+        "rule": "Host(`memory.r4nd0.com`) \u0026\u0026 PathPrefix(`/`)",
+        "priority": 43,
+        "observability": {
+            "accessLogs": true,
+            "metrics": true,
+            "tracing": true,
+            "traceVerbosity": "minimal"
+        },
+        "status": "enabled",
+        "using": [
+            "metrics"
+        ],
+        "name": "default-naughtyrecall-memory-r4nd0-com@kubernetes",
+        "provider": "kubernetes"
+    },
+    {
+        "entryPoints": [
+            "metrics"
+        ],
+        "service": "default-naughtyrecall-80",
+        "rule": "Host(`memorygame.r4nd0.com`) \u0026\u0026 PathPrefix(`/`)",
+        "priority": 47,
+        "observability": {
+            "accessLogs": true,
+            "metrics": true,
+            "tracing": true,
+            "traceVerbosity": "minimal"
+        },
+        "status": "enabled",
+        "using": [
+            "metrics"
+        ],
+        "name": "default-naughtyrecall-memorygame-r4nd0-com@kubernetes",
+        "provider": "kubernetes"
+    },
+    {
+        "entryPoints": [
+            "metrics"
+        ],
+        "service": "default-naughtyrecall-80",
+        "rule": "Host(`naughtyrecall.r4nd0.com`) \u0026\u0026 PathPrefix(`/`)",
+        "priority": 50,
+        "observability": {
+            "accessLogs": true,
+            "metrics": true,
+            "tracing": true,
+            "traceVerbosity": "minimal"
+        },
+        "status": "enabled",
+        "using": [
+            "metrics"
+        ],
+        "name": "default-naughtyrecall-naughtyrecall-r4nd0-com@kubernetes",
+        "provider": "kubernetes"
+    },
+    {
+        "entryPoints": [
+            "metrics"
+        ],
+        "middlewares": [
+            "networking-traefik-geoblock@kubernetescrd"
+        ],
+        "service": "default-rapidnoms-80",
+        "rule": "Host(`rapidnoms.r4nd0.com`) \u0026\u0026 PathPrefix(`/`)",
+        "priority": 46,
+        "observability": {
+            "accessLogs": true,
+            "metrics": true,
+            "tracing": true,
+            "traceVerbosity": "minimal"
+        },
+        "status": "enabled",
+        "using": [
+            "metrics"
+        ],
+        "name": "default-rapidnoms-rapidnoms-r4nd0-com@kubernetes",
+        "provider": "kubernetes"
+    },
+    {
+        "entryPoints": [
+            "metrics"
+        ],
+        "middlewares": [
+            "networking-traefik-geoblock@kubernetescrd"
+        ],
+        "service": "default-sneakyspoon-80",
+        "rule": "Host(`sneakyspoon.r4nd0.com`) \u0026\u0026 PathPrefix(`/`)",
+        "priority": 48,
+        "observability": {
+            "accessLogs": true,
+            "metrics": true,
+            "tracing": true,
+            "traceVerbosity": "minimal"
+        },
+        "status": "enabled",
+        "using": [
+            "metrics"
+        ],
+        "name": "default-sneakyspoon-sneakyspoon-r4nd0-com@kubernetes",
+        "provider": "kubernetes"
+    },
+    {
+        "entryPoints": [
+            "metrics"
+        ],
+        "middlewares": [
+            "networking-traefik-geoblock@kubernetescrd"
+        ],
+        "service": "dev-glitchtip-8000",
+        "rule": "Host(`glitchtip.r4nd0.com`) \u0026\u0026 PathPrefix(`/`)",
+        "priority": 46,
+        "observability": {
+            "accessLogs": true,
+            "metrics": true,
+            "tracing": true,
+            "traceVerbosity": "minimal"
+        },
+        "status": "enabled",
+        "using": [
+            "metrics"
+        ],
+        "name": "dev-glitchtip-glitchtip-r4nd0-com@kubernetes",
+        "provider": "kubernetes"
+    },
+    {
+        "entryPoints": [
+            "metrics"
+        ],
+        "service": "dev-renovate-gitlab-mend-renovate-ce-http",
+        "rule": "Host(`renovate-gitlab.r4nd0.com`) \u0026\u0026 PathPrefix(`/`)",
+        "priority": 52,
+        "observability": {
+            "accessLogs": true,
+            "metrics": true,
+            "tracing": true,
+            "traceVerbosity": "minimal"
+        },
+        "status": "enabled",
+        "using": [
+            "metrics"
+        ],
+        "name": "dev-renovate-gitlab-mend-renovate-ce-renovate-gitlab-r4nd0-com@kubernetes",
+        "provider": "kubernetes"
+    },
+    {
+        "entryPoints": [
+            "metrics"
+        ],
+        "service": "dev-renovate-mend-renovate-ce-http",
+        "rule": "Host(`renovate.r4nd0.com`) \u0026\u0026 PathPrefix(`/`)",
+        "priority": 45,
+        "observability": {
+            "accessLogs": true,
+            "metrics": true,
+            "tracing": true,
+            "traceVerbosity": "minimal"
+        },
+        "status": "enabled",
+        "using": [
+            "metrics"
+        ],
+        "name": "dev-renovate-mend-renovate-ce-renovate-r4nd0-com@kubernetes",
+        "provider": "kubernetes"
+    },
+    {
+        "entryPoints": [
+            "metrics"
+        ],
+        "middlewares": [
+            "networking-traefik-geoblock@kubernetescrd"
+        ],
+        "service": "dev-umami-3000",
+        "rule": "Host(`umami.r4nd0.com`) \u0026\u0026 PathPrefix(`/`)",
+        "priority": 42,
+        "observability": {
+            "accessLogs": true,
+            "metrics": true,
+            "tracing": true,
+            "traceVerbosity": "minimal"
+        },
+        "status": "enabled",
+        "using": [
+            "metrics"
+        ],
+        "name": "dev-umami-umami-r4nd0-com@kubernetes",
+        "provider": "kubernetes"
+    },
+    {
+        "entryPoints": [
+            "metrics"
+        ],
+        "service": "flux-system-webhook-receiver-80",
+        "rule": "Host(`flux-webhook.r4nd0.com`) \u0026\u0026 PathPrefix(`/hook/`)",
+        "priority": 54,
+        "observability": {
+            "accessLogs": true,
+            "metrics": true,
+            "tracing": true,
+            "traceVerbosity": "minimal"
+        },
+        "status": "enabled",
+        "using": [
+            "metrics"
+        ],
+        "name": "flux-system-flux-webhook-flux-webhook-r4nd0-com-hook@kubernetes",
+        "provider": "kubernetes"
+    },
+    {
+        "entryPoints": [
+            "metrics"
+        ],
+        "middlewares": [
+            "networking-traefik-geoblock@kubernetescrd"
+        ],
+        "service": "frontends-anonymousoverflow-8080",
+        "rule": "Host(`anonymousoverflow.r4nd0.com`) \u0026\u0026 PathPrefix(`/`)",
+        "priority": 54,
+        "observability": {
+            "accessLogs": true,
+            "metrics": true,
+            "tracing": true,
+            "traceVerbosity": "minimal"
+        },
+        "status": "enabled",
+        "using": [
+            "metrics"
+        ],
+        "name": "frontends-anonymousoverflow-anonymousoverflow-r4nd0-com@kubernetes",
+        "provider": "kubernetes"
+    },
+    {
+        "entryPoints": [
+            "metrics"
+        ],
+        "middlewares": [
+            "networking-traefik-geoblock@kubernetescrd"
+        ],
+        "service": "frontends-echoip-8080",
+        "rule": "Host(`echoip-local.r4nd0.com`) \u0026\u0026 PathPrefix(`/`)",
+        "priority": 49,
+        "observability": {
+            "accessLogs": true,
+            "metrics": true,
+            "tracing": true,
+            "traceVerbosity": "minimal"
+        },
+        "status": "enabled",
+        "using": [
+            "metrics"
+        ],
+        "name": "frontends-echoip-echoip-local-r4nd0-com@kubernetes",
+        "provider": "kubernetes"
+    },
+    {
+        "entryPoints": [
+            "metrics"
+        ],
+        "middlewares": [
+            "networking-traefik-geoblock@kubernetescrd"
+        ],
+        "service": "frontends-kroki-8000",
+        "rule": "Host(`kroki.r4nd0.com`) \u0026\u0026 PathPrefix(`/`)",
+        "priority": 42,
+        "observability": {
+            "accessLogs": true,
+            "metrics": true,
+            "tracing": true,
+            "traceVerbosity": "minimal"
+        },
+        "status": "enabled",
+        "using": [
+            "metrics"
+        ],
+        "name": "frontends-kroki-kroki-r4nd0-com@kubernetes",
+        "provider": "kubernetes"
+    },
+    {
+        "entryPoints": [
+            "metrics"
+        ],
+        "middlewares": [
+            "networking-traefik-geoblock@kubernetescrd"
+        ],
+        "service": "frontends-libmedium-7000",
+        "rule": "Host(`libmedium.r4nd0.com`) \u0026\u0026 PathPrefix(`/`)",
+        "priority": 46,
+        "observability": {
+            "accessLogs": true,
+            "metrics": true,
+            "tracing": true,
+            "traceVerbosity": "minimal"
+        },
+        "status": "enabled",
+        "using": [
+            "metrics"
+        ],
+        "name": "frontends-libmedium-libmedium-r4nd0-com@kubernetes",
+        "provider": "kubernetes"
+    },
+    {
+        "entryPoints": [
+            "metrics"
+        ],
+        "middlewares": [
+            "networking-traefik-geoblock@kubernetescrd"
+        ],
+        "service": "frontends-libremdb-3000",
+        "rule": "Host(`libremdb.r4nd0.com`) \u0026\u0026 PathPrefix(`/`)",
+        "priority": 45,
+        "observability": {
+            "accessLogs": true,
+            "metrics": true,
+            "tracing": true,
+            "traceVerbosity": "minimal"
+        },
+        "status": "enabled",
+        "using": [
+            "metrics"
+        ],
+        "name": "frontends-libremdb-libremdb-r4nd0-com@kubernetes",
+        "provider": "kubernetes"
+    },
+    {
+        "entryPoints": [
+            "metrics"
+        ],
+        "middlewares": [
+            "networking-traefik-geoblock@kubernetescrd"
+        ],
+        "service": "frontends-mozhi-3000",
+        "rule": "Host(`mozhi.r4nd0.com`) \u0026\u0026 PathPrefix(`/`)",
+        "priority": 42,
+        "observability": {
+            "accessLogs": true,
+            "metrics": true,
+            "tracing": true,
+            "traceVerbosity": "minimal"
+        },
+        "status": "enabled",
+        "using": [
+            "metrics"
+        ],
+        "name": "frontends-mozhi-mozhi-r4nd0-com@kubernetes",
+        "provider": "kubernetes"
+    },
+    {
+        "entryPoints": [
+            "metrics"
+        ],
+        "middlewares": [
+            "networking-traefik-geoblock@kubernetescrd"
+        ],
+        "service": "frontends-redlib-8080",
+        "rule": "Host(`redlib.r4nd0.com`) \u0026\u0026 PathPrefix(`/`)",
+        "priority": 43,
+        "observability": {
+            "accessLogs": true,
+            "metrics": true,
+            "tracing": true,
+            "traceVerbosity": "minimal"
+        },
+        "status": "enabled",
+        "using": [
+            "metrics"
+        ],
+        "name": "frontends-redlib-redlib-r4nd0-com@kubernetes",
+        "provider": "kubernetes"
+    },
+    {
+        "entryPoints": [
+            "metrics"
+        ],
+        "middlewares": [
+            "networking-traefik-geoblock@kubernetescrd"
+        ],
+        "service": "frontends-rimgo-3000",
+        "rule": "Host(`rimgo.r4nd0.com`) \u0026\u0026 PathPrefix(`/`)",
+        "priority": 42,
+        "observability": {
+            "accessLogs": true,
+            "metrics": true,
+            "tracing": true,
+            "traceVerbosity": "minimal"
+        },
+        "status": "enabled",
+        "using": [
+            "metrics"
+        ],
+        "name": "frontends-rimgo-rimgo-r4nd0-com@kubernetes",
+        "provider": "kubernetes"
+    },
+    {
+        "entryPoints": [
+            "metrics"
+        ],
+        "middlewares": [
+            "networking-traefik-geoblock@kubernetescrd"
+        ],
+        "service": "frontends-searxng-8080",
+        "rule": "Host(`searxng.r4nd0.com`) \u0026\u0026 PathPrefix(`/`)",
+        "priority": 44,
+        "observability": {
+            "accessLogs": true,
+            "metrics": true,
+            "tracing": true,
+            "traceVerbosity": "minimal"
+        },
+        "status": "enabled",
+        "using": [
+            "metrics"
+        ],
+        "name": "frontends-searxng-searxng-r4nd0-com@kubernetes",
+        "provider": "kubernetes"
+    },
+    {
+        "entryPoints": [
+            "metrics"
+        ],
+        "middlewares": [
+            "networking-traefik-geoblock@kubernetescrd"
+        ],
+        "service": "frontends-wikiless-8080",
+        "rule": "Host(`wikiless.r4nd0.com`) \u0026\u0026 PathPrefix(`/`)",
+        "priority": 45,
+        "observability": {
+            "accessLogs": true,
+            "metrics": true,
+            "tracing": true,
+            "traceVerbosity": "minimal"
+        },
+        "status": "enabled",
+        "using": [
+            "metrics"
+        ],
+        "name": "frontends-wikiless-wikiless-r4nd0-com@kubernetes",
+        "provider": "kubernetes"
+    },
+    {
+        "entryPoints": [
+            "metrics"
+        ],
+        "middlewares": [
+            "networking-traefik-geoblock@kubernetescrd"
+        ],
+        "service": "media-jellyfin-nginx-8080",
+        "rule": "Host(`jellyfin.r4nd0.com`) \u0026\u0026 PathPrefix(`/`)",
+        "priority": 45,
+        "observability": {
+            "accessLogs": true,
+            "metrics": true,
+            "tracing": true,
+            "traceVerbosity": "minimal"
+        },
+        "status": "enabled",
+        "using": [
+            "metrics"
+        ],
+        "name": "media-jellyfin-jellyfin-r4nd0-com@kubernetes",
+        "provider": "kubernetes"
+    },
+    {
+        "entryPoints": [
+            "metrics"
+        ],
+        "middlewares": [
+            "networking-traefik-geoblock@kubernetescrd"
+        ],
+        "service": "media-jellyseerr-5055",
+        "rule": "Host(`jellyseerr.r4nd0.com`) \u0026\u0026 PathPrefix(`/`)",
+        "priority": 47,
+        "observability": {
+            "accessLogs": true,
+            "metrics": true,
+            "tracing": true,
+            "traceVerbosity": "minimal"
+        },
+        "status": "enabled",
+        "using": [
+            "metrics"
+        ],
+        "name": "media-jellyseerr-jellyseerr-r4nd0-com@kubernetes",
+        "provider": "kubernetes"
+    },
+    {
+        "entryPoints": [
+            "metrics"
+        ],
+        "middlewares": [
+            "networking-traefik-geoblock@kubernetescrd"
+        ],
+        "service": "media-plex-32400",
+        "rule": "Host(`plex.r4nd0.com`) \u0026\u0026 PathPrefix(`/`)",
+        "priority": 41,
+        "observability": {
+            "accessLogs": true,
+            "metrics": true,
+            "tracing": true,
+            "traceVerbosity": "minimal"
+        },
+        "status": "enabled",
+        "using": [
+            "metrics"
+        ],
+        "name": "media-plex-plex-r4nd0-com@kubernetes",
+        "provider": "kubernetes"
+    },
+    {
+        "entryPoints": [
+            "traefik"
+        ],
+        "service": "api@internal",
+        "rule": "PathPrefix(`/dashboard`) || PathPrefix(`/api`)",
+        "priority": 46,
+        "observability": {
+            "accessLogs": true,
+            "metrics": true,
+            "tracing": true,
+            "traceVerbosity": "minimal"
+        },
+        "status": "enabled",
+        "using": [
+            "traefik"
+        ],
+        "name": "networking-ingress-external-dashboard-d012b7f875133eeab4e5@kubernetescrd",
+        "provider": "kubernetescrd"
+    },
+    {
+        "entryPoints": [
+            "metrics"
+        ],
+        "middlewares": [
+            "networking-traefik-geoblock@kubernetescrd"
+        ],
+        "service": "networking-whoami-8080",
+        "rule": "Host(`whoami-external.r4nd0.com`) \u0026\u0026 PathPrefix(`/`)",
+        "priority": 52,
+        "observability": {
+            "accessLogs": true,
+            "metrics": true,
+            "tracing": true,
+            "traceVerbosity": "minimal"
+        },
+        "status": "enabled",
+        "using": [
+            "metrics"
+        ],
+        "name": "networking-whoami-external-whoami-external-r4nd0-com@kubernetes",
+        "provider": "kubernetes"
+    },
+    {
+        "entryPoints": [
+            "traefik"
+        ],
+        "service": "ping@internal",
+        "rule": "PathPrefix(`/ping`)",
+        "ruleSyntax": "default",
+        "priority": 9223372036854775807,
+        "observability": {
+            "accessLogs": true,
+            "metrics": true,
+            "tracing": true,
+            "traceVerbosity": "minimal"
+        },
+        "status": "enabled",
+        "using": [
+            "traefik"
+        ],
+        "name": "ping@internal",
+        "provider": "internal"
+    },
+    {
+        "entryPoints": [
+            "metrics"
+        ],
+        "service": "prometheus@internal",
+        "rule": "PathPrefix(`/metrics`)",
+        "ruleSyntax": "default",
+        "priority": 9223372036854775807,
+        "observability": {
+            "accessLogs": true,
+            "metrics": true,
+            "tracing": true,
+            "traceVerbosity": "minimal"
+        },
+        "status": "enabled",
+        "using": [
+            "metrics"
+        ],
+        "name": "prometheus@internal",
+        "provider": "internal"
+    },
+    {
+        "entryPoints": [
+            "metrics"
+        ],
+        "middlewares": [
+            "networking-traefik-geoblock@kubernetescrd"
+        ],
+        "service": "security-authentik-server-80",
+        "rule": "Host(`auth.r4nd0.com`) \u0026\u0026 PathPrefix(`/`)",
+        "priority": 41,
+        "observability": {
+            "accessLogs": true,
+            "metrics": true,
+            "tracing": true,
+            "traceVerbosity": "minimal"
+        },
+        "status": "enabled",
+        "using": [
+            "metrics"
+        ],
+        "name": "security-authentik-server-auth-r4nd0-com@kubernetes",
+        "provider": "kubernetes"
+    },
+    {
+        "entryPoints": [
+            "metrics"
+        ],
+        "service": "security-fmd-8080",
+        "rule": "Host(`fmd.r4nd0.com`) \u0026\u0026 PathPrefix(`/`)",
+        "priority": 40,
+        "observability": {
+            "accessLogs": true,
+            "metrics": true,
+            "tracing": true,
+            "traceVerbosity": "minimal"
+        },
+        "status": "enabled",
+        "using": [
+            "metrics"
+        ],
+        "name": "security-fmd-fmd-r4nd0-com@kubernetes",
+        "provider": "kubernetes"
+    },
+    {
+        "entryPoints": [
+            "metrics"
+        ],
+        "middlewares": [
+            "networking-traefik-geoblock@kubernetescrd"
+        ],
+        "service": "security-vaultwarden-8080",
+        "rule": "Host(`vault.r4nd0.com`) \u0026\u0026 PathPrefix(`/`)",
+        "priority": 42,
+        "observability": {
+            "accessLogs": true,
+            "metrics": true,
+            "tracing": true,
+            "traceVerbosity": "minimal"
+        },
+        "status": "enabled",
+        "using": [
+            "metrics"
+        ],
+        "name": "security-vaultwarden-vault-r4nd0-com@kubernetes",
+        "provider": "kubernetes"
+    },
+    {
+        "entryPoints": [
+            "web"
+        ],
+        "middlewares": [
+            "networking-traefik-compress@kubernetescrd",
+            "networking-traefik-redirect-https@kubernetescrd",
+            "networking-traefik-geoblock@kubernetescrd"
+        ],
+        "service": "ai-open-webui-http",
+        "rule": "Host(`open-webui.r4nd0.com`) \u0026\u0026 PathPrefix(`/`)",
+        "priority": 47,
+        "observability": {
+            "accessLogs": true,
+            "metrics": true,
+            "tracing": true,
+            "traceVerbosity": "minimal"
+        },
+        "status": "enabled",
+        "using": [
+            "web"
+        ],
+        "name": "web-ai-open-webui-open-webui-r4nd0-com@kubernetes",
+        "provider": "kubernetes"
+    },
+    {
+        "entryPoints": [
+            "web"
+        ],
+        "middlewares": [
+            "networking-traefik-compress@kubernetescrd",
+            "networking-traefik-redirect-https@kubernetescrd",
+            "networking-traefik-geoblock@kubernetescrd"
+        ],
+        "service": "archive-atuin-8888",
+        "rule": "Host(`atuin.r4nd0.com`) \u0026\u0026 PathPrefix(`/`)",
+        "priority": 42,
+        "observability": {
+            "accessLogs": true,
+            "metrics": true,
+            "tracing": true,
+            "traceVerbosity": "minimal"
+        },
+        "status": "enabled",
+        "using": [
+            "web"
+        ],
+        "name": "web-archive-atuin-atuin-r4nd0-com@kubernetes",
+        "provider": "kubernetes"
+    },
+    {
+        "entryPoints": [
+            "web"
+        ],
+        "middlewares": [
+            "networking-traefik-compress@kubernetescrd",
+            "networking-traefik-redirect-https@kubernetescrd",
+            "networking-traefik-geoblock@kubernetescrd"
+        ],
+        "service": "archive-gitlab-gitlab-pages-8090",
+        "rule": "HostRegexp(`^[a-zA-Z0-9-]+\\.pages\\.r4nd0\\.com$`) \u0026\u0026 PathPrefix(`/`)",
+        "priority": 67,
+        "tls": {
+            "options": "default"
+        },
+        "observability": {
+            "accessLogs": true,
+            "metrics": true,
+            "tracing": true,
+            "traceVerbosity": "minimal"
+        },
+        "status": "enabled",
+        "using": [
+            "web"
+        ],
+        "name": "web-archive-gitlab-gitlab-pages-pages-r4nd0-com@kubernetes",
+        "provider": "kubernetes"
+    },
+    {
+        "entryPoints": [
+            "web"
+        ],
+        "middlewares": [
+            "networking-traefik-compress@kubernetescrd",
+            "networking-traefik-redirect-https@kubernetescrd",
+            "networking-traefik-geoblock@kubernetescrd"
+        ],
+        "service": "archive-gitlab-kas-8154",
+        "rule": "Host(`kas.r4nd0.com`) \u0026\u0026 PathPrefix(`/k8s-proxy/`)",
+        "priority": 50,
+        "tls": {
+            "options": "default"
+        },
+        "observability": {
+            "accessLogs": true,
+            "metrics": true,
+            "tracing": true,
+            "traceVerbosity": "minimal"
+        },
+        "status": "enabled",
+        "using": [
+            "web"
+        ],
+        "name": "web-archive-gitlab-kas-kas-r4nd0-com-k8s-proxy@kubernetes",
+        "provider": "kubernetes"
+    },
+    {
+        "entryPoints": [
+            "web"
+        ],
+        "middlewares": [
+            "networking-traefik-compress@kubernetescrd",
+            "networking-traefik-redirect-https@kubernetescrd",
+            "networking-traefik-geoblock@kubernetescrd"
+        ],
+        "service": "archive-gitlab-kas-8150",
+        "rule": "Host(`kas.r4nd0.com`) \u0026\u0026 PathPrefix(`/`)",
+        "priority": 40,
+        "tls": {
+            "options": "default"
+        },
+        "observability": {
+            "accessLogs": true,
+            "metrics": true,
+            "tracing": true,
+            "traceVerbosity": "minimal"
+        },
+        "status": "enabled",
+        "using": [
+            "web"
+        ],
+        "name": "web-archive-gitlab-kas-kas-r4nd0-com@kubernetes",
+        "provider": "kubernetes"
+    },
+    {
+        "entryPoints": [
+            "web"
+        ],
+        "middlewares": [
+            "networking-traefik-compress@kubernetescrd",
+            "networking-traefik-redirect-https@kubernetescrd",
+            "networking-traefik-geoblock@kubernetescrd"
+        ],
+        "service": "archive-gitlab-minio-svc-9000",
+        "rule": "Host(`minio.gitlab.r4nd0.com`) \u0026\u0026 PathPrefix(`/`)",
+        "priority": 49,
+        "tls": {
+            "options": "default"
+        },
+        "observability": {
+            "accessLogs": true,
+            "metrics": true,
+            "tracing": true,
+            "traceVerbosity": "minimal"
+        },
+        "status": "enabled",
+        "using": [
+            "web"
+        ],
+        "name": "web-archive-gitlab-minio-minio-gitlab-r4nd0-com@kubernetes",
+        "provider": "kubernetes"
+    },
+    {
+        "entryPoints": [
+            "web"
+        ],
+        "middlewares": [
+            "networking-traefik-compress@kubernetescrd",
+            "networking-traefik-redirect-https@kubernetescrd",
+            "networking-traefik-geoblock@kubernetescrd"
+        ],
+        "service": "archive-gitlab-registry-5000",
+        "rule": "Host(`registry.gitlab.r4nd0.com`) \u0026\u0026 PathPrefix(`/`)",
+        "priority": 52,
+        "tls": {
+            "options": "default"
+        },
+        "observability": {
+            "accessLogs": true,
+            "metrics": true,
+            "tracing": true,
+            "traceVerbosity": "minimal"
+        },
+        "status": "enabled",
+        "using": [
+            "web"
+        ],
+        "name": "web-archive-gitlab-registry-registry-gitlab-r4nd0-com@kubernetes",
+        "provider": "kubernetes"
+    },
+    {
+        "entryPoints": [
+            "web"
+        ],
+        "middlewares": [
+            "networking-traefik-compress@kubernetescrd",
+            "networking-traefik-redirect-https@kubernetescrd",
+            "networking-traefik-geoblock@kubernetescrd"
+        ],
+        "service": "archive-gitlab-webservice-default-8181",
+        "rule": "Host(`gitlab.r4nd0.com`) \u0026\u0026 PathPrefix(`/`)",
+        "priority": 43,
+        "tls": {
+            "options": "default"
+        },
+        "observability": {
+            "accessLogs": true,
+            "metrics": true,
+            "tracing": true,
+            "traceVerbosity": "minimal"
+        },
+        "status": "enabled",
+        "using": [
+            "web"
+        ],
+        "name": "web-archive-gitlab-webservice-default-gitlab-r4nd0-com@kubernetes",
+        "provider": "kubernetes"
+    },
+    {
+        "entryPoints": [
+            "web"
+        ],
+        "middlewares": [
+            "networking-traefik-compress@kubernetescrd",
+            "networking-traefik-redirect-https@kubernetescrd",
+            "networking-traefik-geoblock@kubernetescrd"
+        ],
+        "service": "archive-hoarder-3000",
+        "rule": "Host(`hoarder.r4nd0.com`) \u0026\u0026 PathPrefix(`/`)",
+        "priority": 44,
+        "observability": {
+            "accessLogs": true,
+            "metrics": true,
+            "tracing": true,
+            "traceVerbosity": "minimal"
+        },
+        "status": "enabled",
+        "using": [
+            "web"
+        ],
+        "name": "web-archive-hoarder-hoarder-r4nd0-com@kubernetes",
+        "provider": "kubernetes"
+    },
+    {
+        "entryPoints": [
+            "web"
+        ],
+        "middlewares": [
+            "networking-traefik-compress@kubernetescrd",
+            "networking-traefik-redirect-https@kubernetescrd",
+            "networking-traefik-geoblock@kubernetescrd"
+        ],
+        "service": "archive-immich-8080",
+        "rule": "Host(`immich.r4nd0.com`) \u0026\u0026 PathPrefix(`/map_proxy/`)",
+        "priority": 53,
+        "observability": {
+            "accessLogs": true,
+            "metrics": true,
+            "tracing": true,
+            "traceVerbosity": "minimal"
+        },
+        "status": "enabled",
+        "using": [
+            "web"
+        ],
+        "name": "web-archive-immich-immich-r4nd0-com-map-proxy@kubernetes",
+        "provider": "kubernetes"
+    },
+    {
+        "entryPoints": [
+            "web"
+        ],
+        "middlewares": [
+            "networking-traefik-compress@kubernetescrd",
+            "networking-traefik-redirect-https@kubernetescrd",
+            "networking-traefik-geoblock@kubernetescrd"
+        ],
+        "service": "archive-immich-2283",
+        "rule": "Host(`immich.r4nd0.com`) \u0026\u0026 PathPrefix(`/`)",
+        "priority": 43,
+        "observability": {
+            "accessLogs": true,
+            "metrics": true,
+            "tracing": true,
+            "traceVerbosity": "minimal"
+        },
+        "status": "enabled",
+        "using": [
+            "web"
+        ],
+        "name": "web-archive-immich-immich-r4nd0-com@kubernetes",
+        "provider": "kubernetes"
+    },
+    {
+        "entryPoints": [
+            "web"
+        ],
+        "middlewares": [
+            "networking-traefik-compress@kubernetescrd",
+            "networking-traefik-redirect-https@kubernetescrd",
+            "networking-traefik-geoblock@kubernetescrd"
+        ],
+        "service": "archive-immich-power-tools-3000",
+        "rule": "Host(`immich-power-tools.r4nd0.com`) \u0026\u0026 PathPrefix(`/`)",
+        "priority": 55,
+        "observability": {
+            "accessLogs": true,
+            "metrics": true,
+            "tracing": true,
+            "traceVerbosity": "minimal"
+        },
+        "status": "enabled",
+        "using": [
+            "web"
+        ],
+        "name": "web-archive-immich-power-tools-immich-power-tools-r4nd0-com@kubernetes",
+        "provider": "kubernetes"
+    },
+    {
+        "entryPoints": [
+            "web"
+        ],
+        "middlewares": [
+            "networking-traefik-compress@kubernetescrd",
+            "networking-traefik-redirect-https@kubernetescrd",
+            "networking-traefik-geoblock@kubernetescrd"
+        ],
+        "service": "archive-memos-8080",
+        "rule": "Host(`memos.r4nd0.com`) \u0026\u0026 PathPrefix(`/`)",
+        "priority": 42,
+        "observability": {
+            "accessLogs": true,
+            "metrics": true,
+            "tracing": true,
+            "traceVerbosity": "minimal"
+        },
+        "status": "enabled",
+        "using": [
+            "web"
+        ],
+        "name": "web-archive-memos-memos-r4nd0-com@kubernetes",
+        "provider": "kubernetes"
+    },
+    {
+        "entryPoints": [
+            "web"
+        ],
+        "middlewares": [
+            "networking-traefik-compress@kubernetescrd",
+            "networking-traefik-redirect-https@kubernetescrd",
+            "networking-traefik-geoblock@kubernetescrd"
+        ],
+        "service": "archive-outline-3000",
+        "rule": "Host(`outline.r4nd0.com`) \u0026\u0026 PathPrefix(`/`)",
+        "priority": 44,
+        "observability": {
+            "accessLogs": true,
+            "metrics": true,
+            "tracing": true,
+            "traceVerbosity": "minimal"
+        },
+        "status": "enabled",
+        "using": [
+            "web"
+        ],
+        "name": "web-archive-outline-outline-r4nd0-com@kubernetes",
+        "provider": "kubernetes"
+    },
+    {
+        "entryPoints": [
+            "web"
+        ],
+        "middlewares": [
+            "networking-traefik-compress@kubernetescrd",
+            "networking-traefik-redirect-https@kubernetescrd",
+            "networking-traefik-geoblock@kubernetescrd"
+        ],
+        "service": "default-apetito-proxy-db-8000",
+        "rule": "Host(`api.sneakyspoon.r4nd0.com`) \u0026\u0026 PathPrefix(`/`)",
+        "priority": 52,
+        "observability": {
+            "accessLogs": true,
+            "metrics": true,
+            "tracing": true,
+            "traceVerbosity": "minimal"
+        },
+        "status": "enabled",
+        "using": [
+            "web"
+        ],
+        "name": "web-default-apetito-proxy-db-api-sneakyspoon-r4nd0-com@kubernetes",
+        "provider": "kubernetes"
+    },
+    {
+        "entryPoints": [
+            "web"
+        ],
+        "middlewares": [
+            "networking-traefik-compress@kubernetescrd",
+            "networking-traefik-redirect-https@kubernetescrd",
+            "networking-traefik-geoblock@kubernetescrd"
+        ],
+        "service": "default-chopsticksninja-80",
+        "rule": "Host(`chopsticksninja.r4nd0.com`) \u0026\u0026 PathPrefix(`/`)",
+        "priority": 52,
+        "observability": {
+            "accessLogs": true,
+            "metrics": true,
+            "tracing": true,
+            "traceVerbosity": "minimal"
+        },
+        "status": "enabled",
+        "using": [
+            "web"
+        ],
+        "name": "web-default-chopsticksninja-chopsticksninja-r4nd0-com@kubernetes",
+        "provider": "kubernetes"
+    },
+    {
+        "entryPoints": [
+            "web"
+        ],
+        "middlewares": [
+            "networking-traefik-compress@kubernetescrd",
+            "networking-traefik-redirect-https@kubernetescrd",
+            "networking-traefik-geoblock@kubernetescrd",
+            "default-garage-cors-headers@kubernetescrd"
+        ],
+        "service": "default-garage-3902",
+        "rule": "HostRegexp(`^[a-zA-Z0-9-]+\\.static\\.garage\\.r4nd0\\.com$`) \u0026\u0026 PathPrefix(`/`)",
+        "priority": 76,
+        "observability": {
+            "accessLogs": true,
+            "metrics": true,
+            "tracing": true,
+            "traceVerbosity": "minimal"
+        },
+        "status": "enabled",
+        "using": [
+            "web"
+        ],
+        "name": "web-default-garage-web-static-garage-r4nd0-com@kubernetes",
+        "provider": "kubernetes"
+    },
+    {
+        "entryPoints": [
+            "web"
+        ],
+        "middlewares": [
+            "networking-traefik-compress@kubernetescrd",
+            "networking-traefik-redirect-https@kubernetescrd",
+            "networking-traefik-geoblock@kubernetescrd"
+        ],
+        "service": "default-icons-3000",
+        "rule": "Host(`icons.r4nd0.com`) \u0026\u0026 PathPrefix(`/`)",
+        "priority": 42,
+        "observability": {
+            "accessLogs": true,
+            "metrics": true,
+            "tracing": true,
+            "traceVerbosity": "minimal"
+        },
+        "status": "enabled",
+        "using": [
+            "web"
+        ],
+        "name": "web-default-icons-icons-r4nd0-com@kubernetes",
+        "provider": "kubernetes"
+    },
+    {
+        "entryPoints": [
+            "web"
+        ],
+        "middlewares": [
+            "networking-traefik-compress@kubernetescrd",
+            "networking-traefik-redirect-https@kubernetescrd"
+        ],
+        "service": "default-naughtyrecall-80",
+        "rule": "Host(`memory.r4nd0.com`) \u0026\u0026 PathPrefix(`/`)",
+        "priority": 43,
+        "observability": {
+            "accessLogs": true,
+            "metrics": true,
+            "tracing": true,
+            "traceVerbosity": "minimal"
+        },
+        "status": "enabled",
+        "using": [
+            "web"
+        ],
+        "name": "web-default-naughtyrecall-memory-r4nd0-com@kubernetes",
+        "provider": "kubernetes"
+    },
+    {
+        "entryPoints": [
+            "web"
+        ],
+        "middlewares": [
+            "networking-traefik-compress@kubernetescrd",
+            "networking-traefik-redirect-https@kubernetescrd"
+        ],
+        "service": "default-naughtyrecall-80",
+        "rule": "Host(`memorygame.r4nd0.com`) \u0026\u0026 PathPrefix(`/`)",
+        "priority": 47,
+        "observability": {
+            "accessLogs": true,
+            "metrics": true,
+            "tracing": true,
+            "traceVerbosity": "minimal"
+        },
+        "status": "enabled",
+        "using": [
+            "web"
+        ],
+        "name": "web-default-naughtyrecall-memorygame-r4nd0-com@kubernetes",
+        "provider": "kubernetes"
+    },
+    {
+        "entryPoints": [
+            "web"
+        ],
+        "middlewares": [
+            "networking-traefik-compress@kubernetescrd",
+            "networking-traefik-redirect-https@kubernetescrd"
+        ],
+        "service": "default-naughtyrecall-80",
+        "rule": "Host(`naughtyrecall.r4nd0.com`) \u0026\u0026 PathPrefix(`/`)",
+        "priority": 50,
+        "observability": {
+            "accessLogs": true,
+            "metrics": true,
+            "tracing": true,
+            "traceVerbosity": "minimal"
+        },
+        "status": "enabled",
+        "using": [
+            "web"
+        ],
+        "name": "web-default-naughtyrecall-naughtyrecall-r4nd0-com@kubernetes",
+        "provider": "kubernetes"
+    },
+    {
+        "entryPoints": [
+            "web"
+        ],
+        "middlewares": [
+            "networking-traefik-compress@kubernetescrd",
+            "networking-traefik-redirect-https@kubernetescrd",
+            "networking-traefik-geoblock@kubernetescrd"
+        ],
+        "service": "default-rapidnoms-80",
+        "rule": "Host(`rapidnoms.r4nd0.com`) \u0026\u0026 PathPrefix(`/`)",
+        "priority": 46,
+        "observability": {
+            "accessLogs": true,
+            "metrics": true,
+            "tracing": true,
+            "traceVerbosity": "minimal"
+        },
+        "status": "enabled",
+        "using": [
+            "web"
+        ],
+        "name": "web-default-rapidnoms-rapidnoms-r4nd0-com@kubernetes",
+        "provider": "kubernetes"
+    },
+    {
+        "entryPoints": [
+            "web"
+        ],
+        "middlewares": [
+            "networking-traefik-compress@kubernetescrd",
+            "networking-traefik-redirect-https@kubernetescrd",
+            "networking-traefik-geoblock@kubernetescrd"
+        ],
+        "service": "default-sneakyspoon-80",
+        "rule": "Host(`sneakyspoon.r4nd0.com`) \u0026\u0026 PathPrefix(`/`)",
+        "priority": 48,
+        "observability": {
+            "accessLogs": true,
+            "metrics": true,
+            "tracing": true,
+            "traceVerbosity": "minimal"
+        },
+        "status": "enabled",
+        "using": [
+            "web"
+        ],
+        "name": "web-default-sneakyspoon-sneakyspoon-r4nd0-com@kubernetes",
+        "provider": "kubernetes"
+    },
+    {
+        "entryPoints": [
+            "web"
+        ],
+        "middlewares": [
+            "networking-traefik-compress@kubernetescrd",
+            "networking-traefik-redirect-https@kubernetescrd",
+            "networking-traefik-geoblock@kubernetescrd"
+        ],
+        "service": "dev-glitchtip-8000",
+        "rule": "Host(`glitchtip.r4nd0.com`) \u0026\u0026 PathPrefix(`/`)",
+        "priority": 46,
+        "observability": {
+            "accessLogs": true,
+            "metrics": true,
+            "tracing": true,
+            "traceVerbosity": "minimal"
+        },
+        "status": "enabled",
+        "using": [
+            "web"
+        ],
+        "name": "web-dev-glitchtip-glitchtip-r4nd0-com@kubernetes",
+        "provider": "kubernetes"
+    },
+    {
+        "entryPoints": [
+            "web"
+        ],
+        "middlewares": [
+            "networking-traefik-compress@kubernetescrd",
+            "networking-traefik-redirect-https@kubernetescrd"
+        ],
+        "service": "dev-renovate-gitlab-mend-renovate-ce-http",
+        "rule": "Host(`renovate-gitlab.r4nd0.com`) \u0026\u0026 PathPrefix(`/`)",
+        "priority": 52,
+        "observability": {
+            "accessLogs": true,
+            "metrics": true,
+            "tracing": true,
+            "traceVerbosity": "minimal"
+        },
+        "status": "enabled",
+        "using": [
+            "web"
+        ],
+        "name": "web-dev-renovate-gitlab-mend-renovate-ce-renovate-gitlab-r4nd0-com@kubernetes",
+        "provider": "kubernetes"
+    },
+    {
+        "entryPoints": [
+            "web"
+        ],
+        "middlewares": [
+            "networking-traefik-compress@kubernetescrd",
+            "networking-traefik-redirect-https@kubernetescrd"
+        ],
+        "service": "dev-renovate-mend-renovate-ce-http",
+        "rule": "Host(`renovate.r4nd0.com`) \u0026\u0026 PathPrefix(`/`)",
+        "priority": 45,
+        "observability": {
+            "accessLogs": true,
+            "metrics": true,
+            "tracing": true,
+            "traceVerbosity": "minimal"
+        },
+        "status": "enabled",
+        "using": [
+            "web"
+        ],
+        "name": "web-dev-renovate-mend-renovate-ce-renovate-r4nd0-com@kubernetes",
+        "provider": "kubernetes"
+    },
+    {
+        "entryPoints": [
+            "web"
+        ],
+        "middlewares": [
+            "networking-traefik-compress@kubernetescrd",
+            "networking-traefik-redirect-https@kubernetescrd",
+            "networking-traefik-geoblock@kubernetescrd"
+        ],
+        "service": "dev-umami-3000",
+        "rule": "Host(`umami.r4nd0.com`) \u0026\u0026 PathPrefix(`/`)",
+        "priority": 42,
+        "observability": {
+            "accessLogs": true,
+            "metrics": true,
+            "tracing": true,
+            "traceVerbosity": "minimal"
+        },
+        "status": "enabled",
+        "using": [
+            "web"
+        ],
+        "name": "web-dev-umami-umami-r4nd0-com@kubernetes",
+        "provider": "kubernetes"
+    },
+    {
+        "entryPoints": [
+            "web"
+        ],
+        "middlewares": [
+            "networking-traefik-compress@kubernetescrd",
+            "networking-traefik-redirect-https@kubernetescrd"
+        ],
+        "service": "flux-system-webhook-receiver-80",
+        "rule": "Host(`flux-webhook.r4nd0.com`) \u0026\u0026 PathPrefix(`/hook/`)",
+        "priority": 54,
+        "observability": {
+            "accessLogs": true,
+            "metrics": true,
+            "tracing": true,
+            "traceVerbosity": "minimal"
+        },
+        "status": "enabled",
+        "using": [
+            "web"
+        ],
+        "name": "web-flux-system-flux-webhook-flux-webhook-r4nd0-com-hook@kubernetes",
+        "provider": "kubernetes"
+    },
+    {
+        "entryPoints": [
+            "web"
+        ],
+        "middlewares": [
+            "networking-traefik-compress@kubernetescrd",
+            "networking-traefik-redirect-https@kubernetescrd",
+            "networking-traefik-geoblock@kubernetescrd"
+        ],
+        "service": "frontends-anonymousoverflow-8080",
+        "rule": "Host(`anonymousoverflow.r4nd0.com`) \u0026\u0026 PathPrefix(`/`)",
+        "priority": 54,
+        "observability": {
+            "accessLogs": true,
+            "metrics": true,
+            "tracing": true,
+            "traceVerbosity": "minimal"
+        },
+        "status": "enabled",
+        "using": [
+            "web"
+        ],
+        "name": "web-frontends-anonymousoverflow-anonymousoverflow-r4nd0-com@kubernetes",
+        "provider": "kubernetes"
+    },
+    {
+        "entryPoints": [
+            "web"
+        ],
+        "middlewares": [
+            "networking-traefik-compress@kubernetescrd",
+            "networking-traefik-redirect-https@kubernetescrd",
+            "networking-traefik-geoblock@kubernetescrd"
+        ],
+        "service": "frontends-echoip-8080",
+        "rule": "Host(`echoip-local.r4nd0.com`) \u0026\u0026 PathPrefix(`/`)",
+        "priority": 49,
+        "observability": {
+            "accessLogs": true,
+            "metrics": true,
+            "tracing": true,
+            "traceVerbosity": "minimal"
+        },
+        "status": "enabled",
+        "using": [
+            "web"
+        ],
+        "name": "web-frontends-echoip-echoip-local-r4nd0-com@kubernetes",
+        "provider": "kubernetes"
+    },
+    {
+        "entryPoints": [
+            "web"
+        ],
+        "middlewares": [
+            "networking-traefik-compress@kubernetescrd",
+            "networking-traefik-redirect-https@kubernetescrd",
+            "networking-traefik-geoblock@kubernetescrd"
+        ],
+        "service": "frontends-kroki-8000",
+        "rule": "Host(`kroki.r4nd0.com`) \u0026\u0026 PathPrefix(`/`)",
+        "priority": 42,
+        "observability": {
+            "accessLogs": true,
+            "metrics": true,
+            "tracing": true,
+            "traceVerbosity": "minimal"
+        },
+        "status": "enabled",
+        "using": [
+            "web"
+        ],
+        "name": "web-frontends-kroki-kroki-r4nd0-com@kubernetes",
+        "provider": "kubernetes"
+    },
+    {
+        "entryPoints": [
+            "web"
+        ],
+        "middlewares": [
+            "networking-traefik-compress@kubernetescrd",
+            "networking-traefik-redirect-https@kubernetescrd",
+            "networking-traefik-geoblock@kubernetescrd"
+        ],
+        "service": "frontends-libmedium-7000",
+        "rule": "Host(`libmedium.r4nd0.com`) \u0026\u0026 PathPrefix(`/`)",
+        "priority": 46,
+        "observability": {
+            "accessLogs": true,
+            "metrics": true,
+            "tracing": true,
+            "traceVerbosity": "minimal"
+        },
+        "status": "enabled",
+        "using": [
+            "web"
+        ],
+        "name": "web-frontends-libmedium-libmedium-r4nd0-com@kubernetes",
+        "provider": "kubernetes"
+    },
+    {
+        "entryPoints": [
+            "web"
+        ],
+        "middlewares": [
+            "networking-traefik-compress@kubernetescrd",
+            "networking-traefik-redirect-https@kubernetescrd",
+            "networking-traefik-geoblock@kubernetescrd"
+        ],
+        "service": "frontends-libremdb-3000",
+        "rule": "Host(`libremdb.r4nd0.com`) \u0026\u0026 PathPrefix(`/`)",
+        "priority": 45,
+        "observability": {
+            "accessLogs": true,
+            "metrics": true,
+            "tracing": true,
+            "traceVerbosity": "minimal"
+        },
+        "status": "enabled",
+        "using": [
+            "web"
+        ],
+        "name": "web-frontends-libremdb-libremdb-r4nd0-com@kubernetes",
+        "provider": "kubernetes"
+    },
+    {
+        "entryPoints": [
+            "web"
+        ],
+        "middlewares": [
+            "networking-traefik-compress@kubernetescrd",
+            "networking-traefik-redirect-https@kubernetescrd",
+            "networking-traefik-geoblock@kubernetescrd"
+        ],
+        "service": "frontends-mozhi-3000",
+        "rule": "Host(`mozhi.r4nd0.com`) \u0026\u0026 PathPrefix(`/`)",
+        "priority": 42,
+        "observability": {
+            "accessLogs": true,
+            "metrics": true,
+            "tracing": true,
+            "traceVerbosity": "minimal"
+        },
+        "status": "enabled",
+        "using": [
+            "web"
+        ],
+        "name": "web-frontends-mozhi-mozhi-r4nd0-com@kubernetes",
+        "provider": "kubernetes"
+    },
+    {
+        "entryPoints": [
+            "web"
+        ],
+        "middlewares": [
+            "networking-traefik-compress@kubernetescrd",
+            "networking-traefik-redirect-https@kubernetescrd",
+            "networking-traefik-geoblock@kubernetescrd"
+        ],
+        "service": "frontends-redlib-8080",
+        "rule": "Host(`redlib.r4nd0.com`) \u0026\u0026 PathPrefix(`/`)",
+        "priority": 43,
+        "observability": {
+            "accessLogs": true,
+            "metrics": true,
+            "tracing": true,
+            "traceVerbosity": "minimal"
+        },
+        "status": "enabled",
+        "using": [
+            "web"
+        ],
+        "name": "web-frontends-redlib-redlib-r4nd0-com@kubernetes",
+        "provider": "kubernetes"
+    },
+    {
+        "entryPoints": [
+            "web"
+        ],
+        "middlewares": [
+            "networking-traefik-compress@kubernetescrd",
+            "networking-traefik-redirect-https@kubernetescrd",
+            "networking-traefik-geoblock@kubernetescrd"
+        ],
+        "service": "frontends-rimgo-3000",
+        "rule": "Host(`rimgo.r4nd0.com`) \u0026\u0026 PathPrefix(`/`)",
+        "priority": 42,
+        "observability": {
+            "accessLogs": true,
+            "metrics": true,
+            "tracing": true,
+            "traceVerbosity": "minimal"
+        },
+        "status": "enabled",
+        "using": [
+            "web"
+        ],
+        "name": "web-frontends-rimgo-rimgo-r4nd0-com@kubernetes",
+        "provider": "kubernetes"
+    },
+    {
+        "entryPoints": [
+            "web"
+        ],
+        "middlewares": [
+            "networking-traefik-compress@kubernetescrd",
+            "networking-traefik-redirect-https@kubernetescrd",
+            "networking-traefik-geoblock@kubernetescrd"
+        ],
+        "service": "frontends-searxng-8080",
+        "rule": "Host(`searxng.r4nd0.com`) \u0026\u0026 PathPrefix(`/`)",
+        "priority": 44,
+        "observability": {
+            "accessLogs": true,
+            "metrics": true,
+            "tracing": true,
+            "traceVerbosity": "minimal"
+        },
+        "status": "enabled",
+        "using": [
+            "web"
+        ],
+        "name": "web-frontends-searxng-searxng-r4nd0-com@kubernetes",
+        "provider": "kubernetes"
+    },
+    {
+        "entryPoints": [
+            "web"
+        ],
+        "middlewares": [
+            "networking-traefik-compress@kubernetescrd",
+            "networking-traefik-redirect-https@kubernetescrd",
+            "networking-traefik-geoblock@kubernetescrd"
+        ],
+        "service": "frontends-wikiless-8080",
+        "rule": "Host(`wikiless.r4nd0.com`) \u0026\u0026 PathPrefix(`/`)",
+        "priority": 45,
+        "observability": {
+            "accessLogs": true,
+            "metrics": true,
+            "tracing": true,
+            "traceVerbosity": "minimal"
+        },
+        "status": "enabled",
+        "using": [
+            "web"
+        ],
+        "name": "web-frontends-wikiless-wikiless-r4nd0-com@kubernetes",
+        "provider": "kubernetes"
+    },
+    {
+        "entryPoints": [
+            "web"
+        ],
+        "middlewares": [
+            "networking-traefik-compress@kubernetescrd",
+            "networking-traefik-redirect-https@kubernetescrd",
+            "networking-traefik-geoblock@kubernetescrd"
+        ],
+        "service": "media-jellyfin-nginx-8080",
+        "rule": "Host(`jellyfin.r4nd0.com`) \u0026\u0026 PathPrefix(`/`)",
+        "priority": 45,
+        "observability": {
+            "accessLogs": true,
+            "metrics": true,
+            "tracing": true,
+            "traceVerbosity": "minimal"
+        },
+        "status": "enabled",
+        "using": [
+            "web"
+        ],
+        "name": "web-media-jellyfin-jellyfin-r4nd0-com@kubernetes",
+        "provider": "kubernetes"
+    },
+    {
+        "entryPoints": [
+            "web"
+        ],
+        "middlewares": [
+            "networking-traefik-compress@kubernetescrd",
+            "networking-traefik-redirect-https@kubernetescrd",
+            "networking-traefik-geoblock@kubernetescrd"
+        ],
+        "service": "media-jellyseerr-5055",
+        "rule": "Host(`jellyseerr.r4nd0.com`) \u0026\u0026 PathPrefix(`/`)",
+        "priority": 47,
+        "observability": {
+            "accessLogs": true,
+            "metrics": true,
+            "tracing": true,
+            "traceVerbosity": "minimal"
+        },
+        "status": "enabled",
+        "using": [
+            "web"
+        ],
+        "name": "web-media-jellyseerr-jellyseerr-r4nd0-com@kubernetes",
+        "provider": "kubernetes"
+    },
+    {
+        "entryPoints": [
+            "web"
+        ],
+        "middlewares": [
+            "networking-traefik-compress@kubernetescrd",
+            "networking-traefik-redirect-https@kubernetescrd",
+            "networking-traefik-geoblock@kubernetescrd"
+        ],
+        "service": "media-plex-32400",
+        "rule": "Host(`plex.r4nd0.com`) \u0026\u0026 PathPrefix(`/`)",
+        "priority": 41,
+        "observability": {
+            "accessLogs": true,
+            "metrics": true,
+            "tracing": true,
+            "traceVerbosity": "minimal"
+        },
+        "status": "enabled",
+        "using": [
+            "web"
+        ],
+        "name": "web-media-plex-plex-r4nd0-com@kubernetes",
+        "provider": "kubernetes"
+    },
+    {
+        "entryPoints": [
+            "web"
+        ],
+        "middlewares": [
+            "networking-traefik-compress@kubernetescrd",
+            "networking-traefik-redirect-https@kubernetescrd",
+            "networking-traefik-geoblock@kubernetescrd"
+        ],
+        "service": "networking-whoami-8080",
+        "rule": "Host(`whoami-external.r4nd0.com`) \u0026\u0026 PathPrefix(`/`)",
+        "priority": 52,
+        "observability": {
+            "accessLogs": true,
+            "metrics": true,
+            "tracing": true,
+            "traceVerbosity": "minimal"
+        },
+        "status": "enabled",
+        "using": [
+            "web"
+        ],
+        "name": "web-networking-whoami-external-whoami-external-r4nd0-com@kubernetes",
+        "provider": "kubernetes"
+    },
+    {
+        "entryPoints": [
+            "web"
+        ],
+        "middlewares": [
+            "networking-traefik-compress@kubernetescrd",
+            "networking-traefik-redirect-https@kubernetescrd",
+            "networking-traefik-geoblock@kubernetescrd"
+        ],
+        "service": "security-authentik-server-80",
+        "rule": "Host(`auth.r4nd0.com`) \u0026\u0026 PathPrefix(`/`)",
+        "priority": 41,
+        "observability": {
+            "accessLogs": true,
+            "metrics": true,
+            "tracing": true,
+            "traceVerbosity": "minimal"
+        },
+        "status": "enabled",
+        "using": [
+            "web"
+        ],
+        "name": "web-security-authentik-server-auth-r4nd0-com@kubernetes",
+        "provider": "kubernetes"
+    },
+    {
+        "entryPoints": [
+            "web"
+        ],
+        "middlewares": [
+            "networking-traefik-compress@kubernetescrd",
+            "networking-traefik-redirect-https@kubernetescrd"
+        ],
+        "service": "security-fmd-8080",
+        "rule": "Host(`fmd.r4nd0.com`) \u0026\u0026 PathPrefix(`/`)",
+        "priority": 40,
+        "observability": {
+            "accessLogs": true,
+            "metrics": true,
+            "tracing": true,
+            "traceVerbosity": "minimal"
+        },
+        "status": "enabled",
+        "using": [
+            "web"
+        ],
+        "name": "web-security-fmd-fmd-r4nd0-com@kubernetes",
+        "provider": "kubernetes"
+    },
+    {
+        "entryPoints": [
+            "web"
+        ],
+        "middlewares": [
+            "networking-traefik-compress@kubernetescrd",
+            "networking-traefik-redirect-https@kubernetescrd",
+            "networking-traefik-geoblock@kubernetescrd"
+        ],
+        "service": "security-vaultwarden-8080",
+        "rule": "Host(`vault.r4nd0.com`) \u0026\u0026 PathPrefix(`/`)",
+        "priority": 42,
+        "observability": {
+            "accessLogs": true,
+            "metrics": true,
+            "tracing": true,
+            "traceVerbosity": "minimal"
+        },
+        "status": "enabled",
+        "using": [
+            "web"
+        ],
+        "name": "web-security-vaultwarden-vault-r4nd0-com@kubernetes",
+        "provider": "kubernetes"
+    },
+    {
+        "entryPoints": [
+            "websecure"
+        ],
+        "middlewares": [
+            "networking-traefik-compress@kubernetescrd",
+            "networking-traefik-geoblock@kubernetescrd"
+        ],
+        "service": "ai-open-webui-http",
+        "rule": "Host(`open-webui.r4nd0.com`) \u0026\u0026 PathPrefix(`/`)",
+        "priority": 47,
+        "tls": {
+            "options": "default"
+        },
+        "observability": {
+            "accessLogs": true,
+            "metrics": true,
+            "tracing": true,
+            "traceVerbosity": "minimal"
+        },
+        "status": "enabled",
+        "using": [
+            "websecure"
+        ],
+        "name": "websecure-ai-open-webui-open-webui-r4nd0-com@kubernetes",
+        "provider": "kubernetes"
+    },
+    {
+        "entryPoints": [
+            "websecure"
+        ],
+        "middlewares": [
+            "networking-traefik-compress@kubernetescrd",
+            "networking-traefik-geoblock@kubernetescrd"
+        ],
+        "service": "archive-atuin-8888",
+        "rule": "Host(`atuin.r4nd0.com`) \u0026\u0026 PathPrefix(`/`)",
+        "priority": 42,
+        "tls": {
+            "options": "default"
+        },
+        "observability": {
+            "accessLogs": true,
+            "metrics": true,
+            "tracing": true,
+            "traceVerbosity": "minimal"
+        },
+        "status": "enabled",
+        "using": [
+            "websecure"
+        ],
+        "name": "websecure-archive-atuin-atuin-r4nd0-com@kubernetes",
+        "provider": "kubernetes"
+    },
+    {
+        "entryPoints": [
+            "websecure"
+        ],
+        "middlewares": [
+            "networking-traefik-compress@kubernetescrd",
+            "networking-traefik-geoblock@kubernetescrd"
+        ],
+        "service": "archive-gitlab-gitlab-pages-8090",
+        "rule": "HostRegexp(`^[a-zA-Z0-9-]+\\.pages\\.r4nd0\\.com$`) \u0026\u0026 PathPrefix(`/`)",
+        "priority": 67,
+        "tls": {
+            "options": "default"
+        },
+        "observability": {
+            "accessLogs": true,
+            "metrics": true,
+            "tracing": true,
+            "traceVerbosity": "minimal"
+        },
+        "status": "enabled",
+        "using": [
+            "websecure"
+        ],
+        "name": "websecure-archive-gitlab-gitlab-pages-pages-r4nd0-com@kubernetes",
+        "provider": "kubernetes"
+    },
+    {
+        "entryPoints": [
+            "websecure"
+        ],
+        "middlewares": [
+            "networking-traefik-compress@kubernetescrd",
+            "networking-traefik-geoblock@kubernetescrd"
+        ],
+        "service": "archive-gitlab-kas-8154",
+        "rule": "Host(`kas.r4nd0.com`) \u0026\u0026 PathPrefix(`/k8s-proxy/`)",
+        "priority": 50,
+        "tls": {
+            "options": "default"
+        },
+        "observability": {
+            "accessLogs": true,
+            "metrics": true,
+            "tracing": true,
+            "traceVerbosity": "minimal"
+        },
+        "status": "enabled",
+        "using": [
+            "websecure"
+        ],
+        "name": "websecure-archive-gitlab-kas-kas-r4nd0-com-k8s-proxy@kubernetes",
+        "provider": "kubernetes"
+    },
+    {
+        "entryPoints": [
+            "websecure"
+        ],
+        "middlewares": [
+            "networking-traefik-compress@kubernetescrd",
+            "networking-traefik-geoblock@kubernetescrd"
+        ],
+        "service": "archive-gitlab-kas-8150",
+        "rule": "Host(`kas.r4nd0.com`) \u0026\u0026 PathPrefix(`/`)",
+        "priority": 40,
+        "tls": {
+            "options": "default"
+        },
+        "observability": {
+            "accessLogs": true,
+            "metrics": true,
+            "tracing": true,
+            "traceVerbosity": "minimal"
+        },
+        "status": "enabled",
+        "using": [
+            "websecure"
+        ],
+        "name": "websecure-archive-gitlab-kas-kas-r4nd0-com@kubernetes",
+        "provider": "kubernetes"
+    },
+    {
+        "entryPoints": [
+            "websecure"
+        ],
+        "middlewares": [
+            "networking-traefik-compress@kubernetescrd",
+            "networking-traefik-geoblock@kubernetescrd"
+        ],
+        "service": "archive-gitlab-minio-svc-9000",
+        "rule": "Host(`minio.gitlab.r4nd0.com`) \u0026\u0026 PathPrefix(`/`)",
+        "priority": 49,
+        "tls": {
+            "options": "default"
+        },
+        "observability": {
+            "accessLogs": true,
+            "metrics": true,
+            "tracing": true,
+            "traceVerbosity": "minimal"
+        },
+        "status": "enabled",
+        "using": [
+            "websecure"
+        ],
+        "name": "websecure-archive-gitlab-minio-minio-gitlab-r4nd0-com@kubernetes",
+        "provider": "kubernetes"
+    },
+    {
+        "entryPoints": [
+            "websecure"
+        ],
+        "middlewares": [
+            "networking-traefik-compress@kubernetescrd",
+            "networking-traefik-geoblock@kubernetescrd"
+        ],
+        "service": "archive-gitlab-registry-5000",
+        "rule": "Host(`registry.gitlab.r4nd0.com`) \u0026\u0026 PathPrefix(`/`)",
+        "priority": 52,
+        "tls": {
+            "options": "default"
+        },
+        "observability": {
+            "accessLogs": true,
+            "metrics": true,
+            "tracing": true,
+            "traceVerbosity": "minimal"
+        },
+        "status": "enabled",
+        "using": [
+            "websecure"
+        ],
+        "name": "websecure-archive-gitlab-registry-registry-gitlab-r4nd0-com@kubernetes",
+        "provider": "kubernetes"
+    }
+]
