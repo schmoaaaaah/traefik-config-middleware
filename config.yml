@@ -17,6 +17,7 @@ downstream:
     # Optional: Ignore routers using these entrypoints (e.g., internal/admin routes)
     ignore_entrypoints:
       - traefik
+    wildcard_fix: true
 
 # Optional settings
 poll_interval: 30s
