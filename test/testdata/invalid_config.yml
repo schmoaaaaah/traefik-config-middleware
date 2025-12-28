@@ -1,0 +1,3 @@
+downstream:
+  - name: [invalid yaml
+    api_url: missing closing bracket
