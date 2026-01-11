@@ -6,6 +6,7 @@ downstream:
     backend_override: http://traefik-config-middleware-downstream-traefik-1-1:808
     # Optional: TLS settings for routes from this downstream
     # tls:
+    #   strip_resolver: true
     #   cert_resolver: myresolver
     # Optional: Override entrypoints for all routes from this downstream
     # entrypoints:

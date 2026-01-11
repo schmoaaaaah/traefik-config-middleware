@@ -252,3 +252,69 @@ func TestBuildTLSConfig_MultipleWildcardsOnly(t *testing.T) {
 		t.Errorf("expected SANs %v, got %v", expectedSans, domains[0].Sans)
 	}
 }
+
+func TestBuildTLSConfig_StripResolver(t *testing.T) {
+	ds := aggregator.DownstreamConfig{
+		TLS: &aggregator.TLSConfig{
+			CertResolver:  "letsencrypt",
+			StripResolver: true,
+		},
+	}
+	rule := "Host(`example.com`)"
+
+	result := aggregator.BuildTLSConfig(ds, rule, nil)
+
+	// certResolver should be stripped
+	if _, exists := result["certResolver"]; exists {
+		t.Error("expected certResolver to be stripped")
+	}
+	// domains should still be present
+	domains, ok := result["domains"].([]aggregator.TLSDomain)
+	if !ok {
+		t.Fatal("expected domains to be []TLSDomain")
+	}
+	if domains[0].Main != "example.com" {
+		t.Errorf("expected main domain 'example.com', got '%s'", domains[0].Main)
+	}
+}
+
+func TestBuildTLSConfig_StripResolverFromExisting(t *testing.T) {
+	ds := aggregator.DownstreamConfig{
+		TLS: &aggregator.TLSConfig{
+			StripResolver: true,
+		},
+	}
+	rule := "Host(`example.com`)"
+	existingTLS := map[string]interface{}{
+		"certResolver": "existing-resolver",
+		"options":      "default",
+	}
+
+	result := aggregator.BuildTLSConfig(ds, rule, existingTLS)
+
+	// certResolver from existing TLS should be stripped
+	if _, exists := result["certResolver"]; exists {
+		t.Error("expected certResolver to be stripped from existing TLS")
+	}
+	// options should still be preserved
+	if result["options"] != "default" {
+		t.Errorf("expected options to be preserved, got '%v'", result["options"])
+	}
+}
+
+func TestBuildTLSConfig_StripResolverFalse(t *testing.T) {
+	ds := aggregator.DownstreamConfig{
+		TLS: &aggregator.TLSConfig{
+			CertResolver:  "letsencrypt",
+			StripResolver: false,
+		},
+	}
+	rule := "Host(`example.com`)"
+
+	result := aggregator.BuildTLSConfig(ds, rule, nil)
+
+	// certResolver should NOT be stripped
+	if result["certResolver"] != "letsencrypt" {
+		t.Errorf("expected certResolver 'letsencrypt', got '%v'", result["certResolver"])
+	}
+}
