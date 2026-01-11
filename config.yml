@@ -18,6 +18,9 @@ downstream:
     ignore_entrypoints:
       - traefik
     wildcard_fix: true
+  - name: passthrough-example
+    api_url: http://example.com/api
+    passthrough: true
 
 # Optional settings
 poll_interval: 30s
