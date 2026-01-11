@@ -30,6 +30,7 @@ type DownstreamConfig struct {
 	Middlewares       []string   `yaml:"middlewares"`
 	IgnoreEntryPoints []string   `yaml:"ignore_entrypoints"`
 	WildcardFix       bool       `yaml:"wildcard_fix"`
+	Passthrough       bool       `yaml:"passthrough"`
 }
 
 // TraefikRouter represents a router from the Traefik API

@@ -40,6 +40,35 @@ func (a *Aggregator) AggregateConfigs() {
 	newConfig.HTTP.Services = make(map[string]HTTPService)
 
 	for _, ds := range a.config.Downstream {
+		// Handle passthrough mode - fetch full config and merge with prefixed names
+		if ds.Passthrough {
+			passthroughConfig, err := FetchPassthroughConfig(ds, a.httpClient)
+			if err != nil {
+				log.Printf("Error fetching passthrough from %s: %v", ds.Name, err)
+				continue
+			}
+
+			// Merge routers with prefixed names
+			for name, router := range passthroughConfig.HTTP.Routers {
+				prefixedName := fmt.Sprintf("%s-%s", ds.Name, name)
+				prefixedServiceName := fmt.Sprintf("%s-%s", ds.Name, router.Service)
+				router.Service = prefixedServiceName
+				newConfig.HTTP.Routers[prefixedName] = router
+			}
+
+			// Merge services with prefixed names
+			for name, service := range passthroughConfig.HTTP.Services {
+				prefixedName := fmt.Sprintf("%s-%s", ds.Name, name)
+				newConfig.HTTP.Services[prefixedName] = service
+			}
+
+			log.Printf("Passthrough %s: %d routers, %d services",
+				ds.Name,
+				len(passthroughConfig.HTTP.Routers),
+				len(passthroughConfig.HTTP.Services))
+			continue
+		}
+
 		routers, err := FetchDownstreamRouters(ds, a.httpClient)
 		if err != nil {
 			log.Printf("Error fetching from %s: %v", ds.Name, err)
