@@ -38,6 +38,7 @@ func (a *Aggregator) AggregateConfigs() {
 	newConfig := HTTPProxyConfig{}
 	newConfig.HTTP.Routers = make(map[string]HTTPRouter)
 	newConfig.HTTP.Services = make(map[string]HTTPService)
+	newConfig.HTTP.Middlewares = make(map[string]interface{})
 
 	for _, ds := range a.config.Downstream {
 		// Handle passthrough mode - fetch full config and merge with prefixed names
@@ -48,11 +49,27 @@ func (a *Aggregator) AggregateConfigs() {
 				continue
 			}
 
+			// Merge middlewares with prefixed names
+			for name, middleware := range passthroughConfig.HTTP.Middlewares {
+				prefixedName := fmt.Sprintf("%s-%s", ds.Name, name)
+				newConfig.HTTP.Middlewares[prefixedName] = middleware
+			}
+
 			// Merge routers with prefixed names
 			for name, router := range passthroughConfig.HTTP.Routers {
 				prefixedName := fmt.Sprintf("%s-%s", ds.Name, name)
 				prefixedServiceName := fmt.Sprintf("%s-%s", ds.Name, router.Service)
 				router.Service = prefixedServiceName
+
+				// Prefix middleware references
+				if len(router.Middlewares) > 0 {
+					prefixedMiddlewares := make([]string, len(router.Middlewares))
+					for i, mw := range router.Middlewares {
+						prefixedMiddlewares[i] = fmt.Sprintf("%s-%s", ds.Name, mw)
+					}
+					router.Middlewares = prefixedMiddlewares
+				}
+
 				newConfig.HTTP.Routers[prefixedName] = router
 			}
 
@@ -62,10 +79,11 @@ func (a *Aggregator) AggregateConfigs() {
 				newConfig.HTTP.Services[prefixedName] = service
 			}
 
-			log.Printf("Passthrough %s: %d routers, %d services",
+			log.Printf("Passthrough %s: %d routers, %d services, %d middlewares",
 				ds.Name,
 				len(passthroughConfig.HTTP.Routers),
-				len(passthroughConfig.HTTP.Services))
+				len(passthroughConfig.HTTP.Services),
+				len(passthroughConfig.HTTP.Middlewares))
 			continue
 		}
 
