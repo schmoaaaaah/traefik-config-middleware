@@ -392,6 +392,73 @@ func TestAggregateConfigs_BackendURLConstruction(t *testing.T) {
 	}
 }
 
+func TestAggregateConfigs_ServerTransport(t *testing.T) {
+	routers := []aggregator.TraefikRouter{
+		{
+			Name:        "test-router@kubernetes",
+			EntryPoints: []string{"websecure"},
+			Service:     "test-service",
+			Rule:        "Host(`example.com`)",
+			TLS:         map[string]interface{}{"options": "default"},
+		},
+	}
+	server := createMockTraefikServer(t, routers)
+	defer server.Close()
+
+	cfg := &aggregator.Config{
+		Downstream: []aggregator.DownstreamConfig{
+			{
+				Name:            "test-downstream",
+				APIURL:          server.URL,
+				ServerTransport: "insecure-transport",
+			},
+		},
+	}
+
+	agg := aggregator.NewAggregator(cfg, &http.Client{})
+	agg.AggregateConfigs()
+
+	cachedConfig := agg.GetCachedConfig()
+
+	service := cachedConfig.HTTP.Services["service-test-downstream-test-router"]
+	if service.LoadBalancer.ServersTransport != "insecure-transport" {
+		t.Errorf("expected serversTransport 'insecure-transport', got '%s'", service.LoadBalancer.ServersTransport)
+	}
+}
+
+func TestAggregateConfigs_ServerTransportNotSet(t *testing.T) {
+	routers := []aggregator.TraefikRouter{
+		{
+			Name:        "test-router@kubernetes",
+			EntryPoints: []string{"websecure"},
+			Service:     "test-service",
+			Rule:        "Host(`example.com`)",
+		},
+	}
+	server := createMockTraefikServer(t, routers)
+	defer server.Close()
+
+	cfg := &aggregator.Config{
+		Downstream: []aggregator.DownstreamConfig{
+			{
+				Name:   "test-downstream",
+				APIURL: server.URL,
+				// ServerTransport not set
+			},
+		},
+	}
+
+	agg := aggregator.NewAggregator(cfg, &http.Client{})
+	agg.AggregateConfigs()
+
+	cachedConfig := agg.GetCachedConfig()
+
+	service := cachedConfig.HTTP.Services["service-test-downstream-test-router"]
+	if service.LoadBalancer.ServersTransport != "" {
+		t.Errorf("expected empty serversTransport, got '%s'", service.LoadBalancer.ServersTransport)
+	}
+}
+
 func TestAggregateConfigs_WildcardFix(t *testing.T) {
 	routers := []aggregator.TraefikRouter{
 		{

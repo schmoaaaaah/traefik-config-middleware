@@ -32,6 +32,7 @@ type DownstreamConfig struct {
 	IgnoreEntryPoints []string   `yaml:"ignore_entrypoints"`
 	WildcardFix       bool       `yaml:"wildcard_fix"`
 	Passthrough       bool       `yaml:"passthrough"`
+	ServerTransport   string     `yaml:"server_transport"`
 }
 
 // TraefikRouter represents a router from the Traefik API
@@ -59,7 +60,8 @@ type Server struct {
 
 // LoadBalancer represents load balancer configuration
 type LoadBalancer struct {
-	Servers []Server `json:"servers"`
+	ServersTransport string   `json:"serversTransport,omitempty"`
+	Servers          []Server `json:"servers"`
 }
 
 // HTTPService represents an HTTP service in the output configuration

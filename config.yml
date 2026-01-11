@@ -4,6 +4,7 @@ downstream:
     api_url: http://traefik-config-middleware-downstream-traefik-1-1:8081
     # Optional: Override the backend URL for this downstream instance
     backend_override: http://traefik-config-middleware-downstream-traefik-1-1:808
+    server_transport: insecure-transport
     # Optional: TLS settings for routes from this downstream
     # tls:
     #   strip_resolver: true
