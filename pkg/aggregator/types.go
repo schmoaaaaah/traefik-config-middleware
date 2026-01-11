@@ -67,10 +67,11 @@ type HTTPService struct {
 	LoadBalancer LoadBalancer `json:"loadBalancer"`
 }
 
-// HTTPBlock contains routers and services
+// HTTPBlock contains routers, services, and middlewares
 type HTTPBlock struct {
-	Routers  map[string]HTTPRouter  `json:"routers"`
-	Services map[string]HTTPService `json:"services"`
+	Routers     map[string]HTTPRouter  `json:"routers"`
+	Services    map[string]HTTPService `json:"services"`
+	Middlewares map[string]interface{} `json:"middlewares,omitempty"`
 }
 
 // HTTPProxyConfig is the complete output configuration

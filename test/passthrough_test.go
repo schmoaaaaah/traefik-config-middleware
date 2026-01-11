@@ -371,7 +371,7 @@ func TestAggregateConfigs_PassthroughPreservesConfig(t *testing.T) {
 					Rule:        "Host(`full.example.com`) && PathPrefix(`/api`)",
 					Service:     "full-service",
 					EntryPoints: []string{"websecure", "web"},
-					Middlewares: []string{"auth@file", "compress@file"},
+					Middlewares: []string{"auth", "compress"},
 					TLS:         map[string]interface{}{"certResolver": "letsencrypt"},
 				},
 			},
@@ -415,11 +415,93 @@ func TestAggregateConfigs_PassthroughPreservesConfig(t *testing.T) {
 	if len(router.Middlewares) != 2 {
 		t.Errorf("expected 2 middlewares, got %d", len(router.Middlewares))
 	}
+	// Middleware references should be prefixed
+	if router.Middlewares[0] != "preserve-test-auth" {
+		t.Errorf("expected middleware 'preserve-test-auth', got '%s'", router.Middlewares[0])
+	}
 	if router.TLS == nil {
 		t.Error("expected TLS config to be preserved")
 	}
 	if router.TLS["certResolver"] != "letsencrypt" {
 		t.Errorf("expected certResolver 'letsencrypt', got '%v'", router.TLS["certResolver"])
+	}
+}
+
+func TestAggregateConfigs_PassthroughWithMiddlewares(t *testing.T) {
+	// Test that middlewares are passed through with prefixed names
+	mockConfig := aggregator.HTTPProxyConfig{
+		HTTP: aggregator.HTTPBlock{
+			Routers: map[string]aggregator.HTTPRouter{
+				"my-router": {
+					Rule:        "Host(`example.com`)",
+					Service:     "my-service",
+					EntryPoints: []string{"websecure"},
+					Middlewares: []string{"auth", "ratelimit"},
+				},
+			},
+			Services: map[string]aggregator.HTTPService{
+				"my-service": {
+					LoadBalancer: aggregator.LoadBalancer{
+						Servers: []aggregator.Server{{URL: "http://backend:80"}},
+					},
+				},
+			},
+			Middlewares: map[string]interface{}{
+				"auth": map[string]interface{}{
+					"basicAuth": map[string]interface{}{
+						"users": []string{"admin:$apr1$..."},
+					},
+				},
+				"ratelimit": map[string]interface{}{
+					"rateLimit": map[string]interface{}{
+						"average": 100,
+						"burst":   50,
+					},
+				},
+			},
+		},
+	}
+
+	server := createMockPassthroughServer(t, mockConfig)
+	defer server.Close()
+
+	cfg := &aggregator.Config{
+		Downstream: []aggregator.DownstreamConfig{
+			{
+				Name:        "mw-test",
+				APIURL:      server.URL,
+				Passthrough: true,
+			},
+		},
+	}
+
+	agg := aggregator.NewAggregator(cfg, &http.Client{})
+	agg.AggregateConfigs()
+
+	cachedConfig := agg.GetCachedConfig()
+
+	// Check middlewares are passed through with prefixed names
+	if len(cachedConfig.HTTP.Middlewares) != 2 {
+		t.Errorf("expected 2 middlewares, got %d", len(cachedConfig.HTTP.Middlewares))
+	}
+
+	if _, exists := cachedConfig.HTTP.Middlewares["mw-test-auth"]; !exists {
+		t.Error("expected middleware 'mw-test-auth' to exist")
+	}
+	if _, exists := cachedConfig.HTTP.Middlewares["mw-test-ratelimit"]; !exists {
+		t.Error("expected middleware 'mw-test-ratelimit' to exist")
+	}
+
+	// Check router middleware references are prefixed
+	router := cachedConfig.HTTP.Routers["mw-test-my-router"]
+	if len(router.Middlewares) != 2 {
+		t.Errorf("expected 2 middleware references, got %d", len(router.Middlewares))
+	}
+	if router.Middlewares[0] != "mw-test-auth" {
+		t.Errorf("expected middleware ref 'mw-test-auth', got '%s'", router.Middlewares[0])
+	}
+	if router.Middlewares[1] != "mw-test-ratelimit" {
+		t.Errorf("expected middleware ref 'mw-test-ratelimit', got '%s'", router.Middlewares[1])
 	}
 }
 
