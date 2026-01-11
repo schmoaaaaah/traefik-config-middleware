@@ -10,7 +10,8 @@ type Config struct {
 
 // TLSConfig holds TLS-specific configuration for a downstream
 type TLSConfig struct {
-	CertResolver string `yaml:"cert_resolver"`
+	CertResolver  string `yaml:"cert_resolver"`
+	StripResolver bool   `yaml:"strip_resolver"`
 }
 
 // TLSDomain represents a single domain entry for TLS certificates

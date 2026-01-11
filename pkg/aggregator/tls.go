@@ -19,6 +19,11 @@ func BuildTLSConfig(ds DownstreamConfig, rule string, existingTLS map[string]int
 		tlsConfig["certResolver"] = ds.TLS.CertResolver
 	}
 
+	// Strip certResolver if requested
+	if ds.TLS != nil && ds.TLS.StripResolver {
+		delete(tlsConfig, "certResolver")
+	}
+
 	// Extract and add domains from rule
 	domains := ExtractDomainsFromRule(rule, ds.WildcardFix)
 	if len(domains) > 0 {
