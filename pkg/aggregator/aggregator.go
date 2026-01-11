@@ -147,6 +147,9 @@ func (a *Aggregator) AggregateConfigs() {
 			httpService.LoadBalancer.Servers = []Server{
 				{URL: backendURL},
 			}
+			if ds.ServerTransport != "" {
+				httpService.LoadBalancer.ServersTransport = ds.ServerTransport
+			}
 			newConfig.HTTP.Services[httpServiceName] = httpService
 
 			log.Printf("  Added HTTP route: %s -> %s (TLS: %v)", router.Rule, backendURL, useTLS)
